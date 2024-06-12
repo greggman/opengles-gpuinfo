@@ -1,0 +1,704 @@
+<html>
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html" charset="ISO-8859-1">
+	<meta name="robots" content="index, nofollow" />
+	<title>OpenGL ES Hardware Database - by Sascha Willems</title>
+
+	<link rel="icon" type="image/png" href="/images/OpenGL-ES_LogoBug_32px_Nov17.png" sizes="32x32">
+
+	<link rel="stylesheet" type="text/css" href="external/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="external/css/dataTables.bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="external/css/fixedHeader.bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="external/css/responsive.bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="external/bootstrap-toggle.min.css" rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" href="stylenew.css">
+
+	<script src="external/apexcharts/apexcharts.js"></script>
+
+	<script type="text/javascript" src="external/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="external/bootstrap.min.js"></script>
+	<script type="text/javascript" src="external/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="external/dataTables.bootstrap.min.js"></script>
+	<script type="text/javascript" src="external/bootstrap-toggle.min.js"></script>	
+	<script type="text/javascript" src="external/dataTables.fixedHeader.min.js"></script>
+
+<!--	<script type="text/javascript" src="external/dataTables.responsive.min.js"></script> -->
+	<script type="text/javascript" src="external/responsive.bootstrap.min.js"></script>
+	
+	<script>
+		$(document).ready(function () {
+				$.each($('#navbar').find('li'), function() {
+						$(this).toggleClass('active',
+								'/' + $(this).find('a').attr('href') == window.location.pathname);
+				});
+		});	
+	</script>
+</head>
+<body>
+<!-- Bootstrap nav bar -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+	  <div class="container-fluid">
+		<div class="navbar-header">
+		  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span> 
+		  </button>
+		  <a href="https://opengles.gpuinfo.org">
+			<img src="./images/opengles.png" height="48px">
+		  </a>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+		  <ul class="nav navbar-nav">
+		
+			<li><a href='./listreports.php'>Reports</span></a></li>
+			
+			  <li class="dropdown">
+				  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Extensions
+				  <span class="caret"></span></a>
+				  <ul class="dropdown-menu">
+					<li><a href='./listextensions.php'>OpenGL ES</a></li>
+					<li><a href='./listeglextensions.php'>EGL</a></li>
+				  </ul>
+			  </li>
+						
+			<li><a href='./listcapabilities.php'>Capabilities</a></li>
+			<li><a href='./listcompressedformats.php'>Compr. formats</a></li>
+			<li><a href='./listdevicefeatures.php'>Device features</a></li>	
+			<li><a href='https://play.google.com/store/apps/details?id=de.saschawillems.glescapsviewer' target='_blank'>Download</a></li>			
+			<li><a href="./about.php">About</a></li>
+		  </ul>
+		  <ul class="nav navbar-nav navbar-right">
+			  <li class="dropdown">
+				  <a class="dropdown-toggle" data-toggle="dropdown" href="#">gpuinfo.org
+				  <span class="caret"></span></a>
+				  <ul class="dropdown-menu">
+					<li><a href="https://opengl.gpuinfo.org">OpenGL</a></li>
+					<li><a href="https://opengles.gpuinfo.org">OpenGL ES</a></li>
+					<li><a href="https://opencl.gpuinfo.org">OpenCL</a></li>
+					<li><a href="https://vulkan.gpuinfo.org">Vulkan</a></li>					  
+          				<li role="separator" class="divider"></li>
+					<li><a href="https://android.gpuinfo.org">Android</a></li> 
+          				<li role="separator" class="divider"></li>
+					<li><a href="https://www.gpuinfo.org">Launchpad</a></li> 
+				  </ul>
+			  </li>
+		  </ul>		  
+		</div>
+	  </div>
+	</nav>
+
+<center><div class='header'><h4 style='margin-left:10px;'>Report for 'Tegra Note 7 (OpenGL ES 2.0 17.01214)'</h4></div>	<!-- Navigation -->
+	<div>
+		<ul class='nav nav-tabs'>
+			<li class='active'><a data-toggle='tab' href='#tabs-implementation'>Implementation</a></li>
+			<li><a data-toggle='tab' href='#tabs-gl-extensions'>GL Extensions <span class='badge'>81</span></a></li>
+			<li><a data-toggle='tab' href='#tabs-egl-extensions'>EGL Extensions <span class='badge'>33</span></a></li>
+			<li><a data-toggle='tab' href='#tabs-compressedformats'>Compr. formats <span class='badge'>14</span></a></li>
+			<li><a data-toggle='tab' href='#tabs-shaderformats'>Shader formats</a></li>
+			<li><a data-toggle='tab' href='#tabs-sensors'>Sensors <span class='badge'>9</span></a></li>
+			<li><a data-toggle='tab' href='#tabs-features'>Features <span class='badge'>47</span></a></li>
+		</ul>
+	</div>
+
+	<div class='tablediv tab-content' style='width:75%;'>
+
+		<!-- Implementation -->
+
+		<div id='tabs-implementation' class='tab-pane fade in active reportdiv'>
+			<table id='implementation' class='table table-striped table-bordered table-hover responsive' style='width:100%;'>
+				<thead>
+					<tr>
+						<th>Property</th>
+						<th>Value</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class='group'><td>Device</td><td></td></tr><tr>
+<td class='subkey'>Device</td>
+<td>Tegra Note 7</td></tr>
+<tr>
+<td class='subkey'>Android version</td>
+<td>5.1</td></tr>
+<tr>
+<td class='subkey'>Screen width</td>
+<td>1280</td></tr>
+<tr>
+<td class='subkey'>Screen height</td>
+<td>736</td></tr>
+<tr>
+<td class='subkey'>CPU cores</td>
+<td>4</td></tr>
+<tr>
+<td class='subkey'>CPU speed (MHz)</td>
+<td>1810.5</td></tr>
+<tr>
+<td class='subkey'>CPU architecture</td>
+<td>armv7l</td></tr>
+<tr>
+<td class='subkey'>Submitted at</td>
+<td>2017-07-18 23:29:41</td></tr>
+<tr>
+<td class='subkey'>Submitted by</td>
+<td><a href='.\listreports.php?submitter=open GL 3.1'>open GL 3.1</a></td></tr>
+<tr class='group'><td>OpenGL ES renderer</td><td></td></tr><tr>
+<td class='subkey'>GL_VENDOR</td>
+<td>NVIDIA Corporation</td></tr>
+<tr>
+<td class='subkey'>GL_RENDERER</td>
+<td>NVIDIA Tegra</td></tr>
+<tr>
+<td class='subkey'>GL_VERSION</td>
+<td>OpenGL ES 2.0 17.01214</td></tr>
+<tr>
+<td class='subkey'>GL_SHADING_LANGUAGE_VERSION</td>
+<td>OpenGL ES GLSL 1.00</td></tr>
+<tr class='group'><td>EGL implementation</td><td></td></tr><tr>
+<td class='subkey'>EGL_VENDOR</td>
+<td>Android</td></tr>
+<tr>
+<td class='subkey'>EGL_VERSION</td>
+<td>1.4 Android META-EGL</td></tr>
+<tr>
+<td class='subkey'>Client APIs</td>
+<td>OpenGL_ES</td></tr>
+<tr class='group'><td>OpenGL ES 2.0 capabilities</td><td></td></tr><tr>
+<td class='subkey'>GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS</td>
+<td class='valuezeroleftdark'>16</td></tr>
+<tr>
+<td class='subkey'>GL_MAX_CUBE_MAP_TEXTURE_SIZE</td>
+<td class='valuezeroleftdark'>4,096</td></tr>
+<tr>
+<td class='subkey'>GL_MAX_FRAGMENT_UNIFORM_VECTORS</td>
+<td class='valuezeroleftdark'>1,024</td></tr>
+<tr>
+<td class='subkey'>GL_MAX_RENDERBUFFER_SIZE</td>
+<td class='valuezeroleftdark'>4,096</td></tr>
+<tr>
+<td class='subkey'>GL_MAX_TEXTURE_IMAGE_UNITS</td>
+<td class='valuezeroleftdark'>16</td></tr>
+<tr>
+<td class='subkey'>GL_MAX_TEXTURE_SIZE</td>
+<td class='valuezeroleftdark'>4,096</td></tr>
+<tr>
+<td class='subkey'>GL_MAX_VARYING_VECTORS</td>
+<td class='valuezeroleftdark'>15</td></tr>
+<tr>
+<td class='subkey'>GL_MAX_VERTEX_ATTRIBS</td>
+<td class='valuezeroleftdark'>16</td></tr>
+<tr>
+<td class='subkey'>GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS</td>
+<td class='valuezeroleftdark'>0</td></tr>
+<tr>
+<td class='subkey'>GL_MAX_VERTEX_UNIFORM_VECTORS</td>
+<td class='valuezeroleftdark'>280</td></tr>
+<tr>
+<td class='subkey'>GL_MAX_VIEWPORT_DIMS</td>
+<td class='valuezeroleftdark'>4,096</td></tr>
+<tr>
+<td class='subkey'>GL_NUM_COMPRESSED_TEXTURE_FORMATS</td>
+<td class='valuezeroleftdark'>14</td></tr>
+<tr>
+<td class='subkey'>GL_NUM_SHADER_BINARY_FORMATS</td>
+<td class='valuezeroleftdark'>0</td></tr>
+<tr>
+<td class='subkey'>GL_NUM_PROGRAM_BINARY_FORMATS</td>
+<td class='valuezeroleftdark'>0</td></tr>
+<tr class='group'><td>OpenGL ES 3.0 capabilities</td><td></td></tr><tr><td class='subkey' style='color:#FF0000;'>not supported</td><td></td></tr>	    
+				</tbody>
+			</table>
+		</div>
+
+		<!-- GL Extensions -->
+
+		<div id='tabs-gl-extensions' class='tab-pane fade in reportdiv'>
+			<table id='extensions' class='table table-striped table-bordered table-hover responsive' style='width:100%;'>
+				<thead>
+					<tr>
+						<th>Extension</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_EXT_debug_marker'>GL_EXT_debug_marker</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_EXT_robustness'>GL_EXT_robustness</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_EXT_texture_format_BGRA8888'>GL_EXT_texture_format_BGRA8888</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_OES_compressed_ETC1_RGB8_texture'>GL_OES_compressed_ETC1_RGB8_texture</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_OES_depth_texture'>GL_OES_depth_texture</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_OES_depth24'>GL_OES_depth24</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_OES_EGL_image'>GL_OES_EGL_image</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_OES_EGL_image_external'>GL_OES_EGL_image_external</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_OES_fbo_render_mipmap'>GL_OES_fbo_render_mipmap</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_OES_rgb8_rgba8'>GL_OES_rgb8_rgba8</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_OES_standard_derivatives'>GL_OES_standard_derivatives</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_OES_texture_half_float'>GL_OES_texture_half_float</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_OES_texture_half_float_linear'>GL_OES_texture_half_float_linear</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_OES_vertex_half_float'>GL_OES_vertex_half_float</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_OES_vertex_array_object'>GL_OES_vertex_array_object</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_EXT_texture_filter_anisotropic'>GL_EXT_texture_filter_anisotropic</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_OES_EGL_sync'>GL_OES_EGL_sync</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_EXT_debug_label'>GL_EXT_debug_label</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_OES_depth_texture_cube_map'>GL_OES_depth_texture_cube_map</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_EXT_sRGB'>GL_EXT_sRGB</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_EXT_color_buffer_half_float'>GL_EXT_color_buffer_half_float</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_OES_surfaceless_context'>GL_OES_surfaceless_context</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_depth_nonlinear'>GL_NV_depth_nonlinear</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_draw_path'>GL_NV_draw_path</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_draw_texture'>GL_NV_draw_texture</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_texture_npot_2D_mipmap'>GL_NV_texture_npot_2D_mipmap</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_OES_mapbuffer'>GL_OES_mapbuffer</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_draw_buffers'>GL_NV_draw_buffers</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_multiview_draw_buffers'>GL_NV_multiview_draw_buffers</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_EXT_packed_float'>GL_EXT_packed_float</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_EXT_texture_compression_latc'>GL_EXT_texture_compression_latc</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_texture_compression_latc'>GL_NV_texture_compression_latc</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_EXT_texture_compression_dxt1'>GL_EXT_texture_compression_dxt1</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_EXT_texture_compression_s3tc'>GL_EXT_texture_compression_s3tc</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_texture_compression_s3tc'>GL_NV_texture_compression_s3tc</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_get_tex_image'>GL_NV_get_tex_image</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_read_buffer'>GL_NV_read_buffer</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_shader_framebuffer_fetch'>GL_NV_shader_framebuffer_fetch</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_copy_image'>GL_NV_copy_image</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_fbo_color_attachments'>GL_NV_fbo_color_attachments</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_EXT_bgra'>GL_EXT_bgra</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_EXT_read_format_bgra'>GL_EXT_read_format_bgra</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_EXT_unpack_subimage'>GL_EXT_unpack_subimage</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_pack_subimage'>GL_NV_pack_subimage</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_texture_compression_s3tc_update'>GL_NV_texture_compression_s3tc_update</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_read_depth'>GL_NV_read_depth</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_read_stencil'>GL_NV_read_stencil</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_uniform_buffer_object'>GL_NV_uniform_buffer_object</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_map_buffer_range'>GL_NV_map_buffer_range</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_EGL_stream_consumer_external'>GL_NV_EGL_stream_consumer_external</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_EXT_separate_shader_objects'>GL_EXT_separate_shader_objects</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_copy_buffer'>GL_NV_copy_buffer</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_3dvision_settings'>GL_NV_3dvision_settings</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_KHR_debug'>GL_KHR_debug</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_EXT_texture_storage'>GL_EXT_texture_storage</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_pixel_buffer_object'>GL_NV_pixel_buffer_object</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_framebuffer_blit'>GL_NV_framebuffer_blit</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_non_square_matrices'>GL_NV_non_square_matrices</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_explicit_attrib_location'>GL_NV_explicit_attrib_location</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_smooth_points_lines'>GL_NV_smooth_points_lines</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_EXT_occlusion_query_boolean'>GL_EXT_occlusion_query_boolean</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_occlusion_query_samples'>GL_NV_occlusion_query_samples</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_timer_query'>GL_NV_timer_query</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_EXT_texture_rg'>GL_EXT_texture_rg</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_EXT_texture_sRGB_decode'>GL_EXT_texture_sRGB_decode</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_EXT_frag_depth'>GL_EXT_frag_depth</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_EXT_shadow_samplers'>GL_EXT_shadow_samplers</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_framebuffer_multisample'>GL_NV_framebuffer_multisample</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_shadow_samplers_cube'>GL_NV_shadow_samplers_cube</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_texture_array'>GL_NV_texture_array</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_draw_instanced'>GL_NV_draw_instanced</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_generate_mipmap_sRGB'>GL_NV_generate_mipmap_sRGB</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_instanced_arrays'>GL_NV_instanced_arrays</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_packed_float'>GL_NV_packed_float</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_packed_float_linear'>GL_NV_packed_float_linear</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_secure_context'>GL_NV_secure_context</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_shadow_samplers_array'>GL_NV_shadow_samplers_array</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_sRGB_formats'>GL_NV_sRGB_formats</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_texture_border_clamp'>GL_NV_texture_border_clamp</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_EGL_image_external_YUV'>GL_NV_EGL_image_external_YUV</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?extension=GL_NV_framebuffer_sRGB'>GL_NV_framebuffer_sRGB</a></td>
+</tr>	
+				</tbody>
+			</table>
+		</div>
+
+		<!-- EGL Extensions -->
+
+		<div id='tabs-egl-extensions' class='tab-pane fade reportdiv'>
+			<table id='eglextensions' class='table table-striped table-bordered table-hover responsive' style='width:100%;'>
+				<thead>
+					<tr>
+						<th>Extension</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_KHR_image'>EGL_KHR_image</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_KHR_image_base'>EGL_KHR_image_base</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_KHR_gl_texture_2D_image'>EGL_KHR_gl_texture_2D_image</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_KHR_gl_texture_cubemap_image'>EGL_KHR_gl_texture_cubemap_image</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_KHR_gl_renderbuffer_image'>EGL_KHR_gl_renderbuffer_image</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_KHR_fence_sync'>EGL_KHR_fence_sync</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_ANDROID_image_native_buffer'>EGL_ANDROID_image_native_buffer</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_KHR_lock_surface'>EGL_KHR_lock_surface</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_KHR_create_context'>EGL_KHR_create_context</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_EXT_create_context_robustness'>EGL_EXT_create_context_robustness</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_KHR_get_all_proc_addresses'>EGL_KHR_get_all_proc_addresses</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_ANDROID_presentation_time'>EGL_ANDROID_presentation_time</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_ANDROID_recordable'>EGL_ANDROID_recordable</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_KHR_image_pixmap'>EGL_KHR_image_pixmap</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_KHR_reusable_sync'>EGL_KHR_reusable_sync</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_KHR_config_attribs'>EGL_KHR_config_attribs</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_KHR_surfaceless_context'>EGL_KHR_surfaceless_context</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_KHR_stream'>EGL_KHR_stream</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_KHR_stream_fifo'>EGL_KHR_stream_fifo</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_KHR_stream_producer_eglsurface'>EGL_KHR_stream_producer_eglsurface</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_KHR_stream_consumer_gltexture'>EGL_KHR_stream_consumer_gltexture</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_KHR_stream_cross_process_fd'>EGL_KHR_stream_cross_process_fd</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_NV_system_time'>EGL_NV_system_time</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_NV_depth_nonlinear'>EGL_NV_depth_nonlinear</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_NV_native_query'>EGL_NV_native_query</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_NV_post_convert_rounding'>EGL_NV_post_convert_rounding</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_NV_3dvision_surface'>EGL_NV_3dvision_surface</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_NV_sync'>EGL_NV_sync</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_NV_perfmon'>EGL_NV_perfmon</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_NV_multiview_window'>EGL_NV_multiview_window</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_NV_stream_sync'>EGL_NV_stream_sync</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_IMG_context_priority'>EGL_IMG_context_priority</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?eglextension=EGL_EXT_buffer_age'>EGL_EXT_buffer_age</a></td>
+</tr>		
+				</tbody>
+			</table>
+		</div>
+
+		<!-- Commpressed formats -->
+
+		<div id='tabs-compressedformats' class='tab-pane fade reportdiv'>
+			<table id='compressedformats' class='table table-striped table-bordered table-hover responsive' style='width:100%;'>
+				<thead>
+					<tr>
+						<th>Format</th>
+					</tr>
+				</thead>
+				<tbody>
+				<tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?compressedtextureformat=GL_ETC1_RGB8_OES'>GL_ETC1_RGB8_OES</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?compressedtextureformat=GL_COMPRESSED_RGB_S3TC_DXT1'>GL_COMPRESSED_RGB_S3TC_DXT1</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?compressedtextureformat=GL_COMPRESSED_RGBA_S3TC_DXT1'>GL_COMPRESSED_RGBA_S3TC_DXT1</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?compressedtextureformat=GL_OMPRESSED_RGBA_S3TC_DXT3'>GL_OMPRESSED_RGBA_S3TC_DXT3</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?compressedtextureformat=GL_COMPRESSED_RGBA_S3TC_DXT5'>GL_COMPRESSED_RGBA_S3TC_DXT5</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?compressedtextureformat=GL_COMPRESSED_LUMINANCE_LATC1_NV'>GL_COMPRESSED_LUMINANCE_LATC1_NV</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?compressedtextureformat=GL_COMPRESSED_SIGNED_LUMINANCE_LATC1_NV'>GL_COMPRESSED_SIGNED_LUMINANCE_LATC1_NV</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?compressedtextureformat=GL_COMPRESSED_LUMINANCE_ALPHA_LATC2_NV'>GL_COMPRESSED_LUMINANCE_ALPHA_LATC2_NV</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?compressedtextureformat=GL_COMPRESSED_SIGNED_LUMINANCE_ALPHA_LATC2_NV'>GL_COMPRESSED_SIGNED_LUMINANCE_ALPHA_LATC2_NV</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?compressedtextureformat=0x8c4c'>0x8c4c</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?compressedtextureformat=0x8c4d'>0x8c4d</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?compressedtextureformat=0x8c4e'>0x8c4e</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?compressedtextureformat=0x8c4f'>0x8c4f</a></td>
+</tr><tr>
+<td class='firstcolumn' colspan=2><a href='./listreports.php?compressedtextureformat=0x88ee'>0x88ee</a></td>
+</tr>				</tbody>
+			</table>
+		</div>
+		
+		<!-- Shader formats -->
+		<div id='tabs-shaderformats' class='tab-pane fade reportdiv'>
+
+			<!-- Binary shader formats -->
+			<h3>Binary shader formats</h3>
+			<table id='shaderformats' class='table table-striped table-bordered table-hover responsive' style='width:100%;'>
+				<thead>
+					<tr>
+						<th>Format</th>
+					</tr>
+				</thead>
+				<tbody>
+									</tbody>
+			</table>
+
+			<!-- Binary program formats -->
+			<h3>Binary program formats</h3>
+			<table id='programformats' class='table table-striped table-bordered table-hover responsive' style='width:100%;'>
+				<thead>
+					<tr>
+						<th>Format</th>
+					</tr>
+				</thead>
+				<tbody>
+									</tbody>
+			</table>
+
+		</div>
+			
+		<!-- Sensors -->
+		<div id='tabs-sensors' class='tab-pane fade reportdiv'>
+			<table id='sensors' class='table table-striped table-bordered table-hover responsive' style='width:100%;'>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Max.Range</th>
+						<th>Resolution</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr><td class='valuezeroleft'>MPL rotation vector</td><td class='valuezeroleft'>10240</td><td class='valuezeroleft'>1</td></tr><tr><td class='valuezeroleft'>MPL linear accel</td><td class='valuezeroleft'>10240</td><td class='valuezeroleft'>1</td></tr><tr><td class='valuezeroleft'>MPL gravity</td><td class='valuezeroleft'>10240</td><td class='valuezeroleft'>1</td></tr><tr><td class='valuezeroleft'>MPL Gyro</td><td class='valuezeroleft'>10240</td><td class='valuezeroleft'>1</td></tr><tr><td class='valuezeroleft'>MPL accel</td><td class='valuezeroleft'>10240</td><td class='valuezeroleft'>1</td></tr><tr><td class='valuezeroleft'>MPL magnetic field</td><td class='valuezeroleft'>10240</td><td class='valuezeroleft'>1</td></tr><tr><td class='valuezeroleft'>MPL Orientation</td><td class='valuezeroleft'>360</td><td class='valuezeroleft'>1</td></tr><tr><td class='valuezeroleft'>CM3217 Light Sensor</td><td class='valuezeroleft'>10240</td><td class='valuezeroleft'>1</td></tr><tr><td class='valuezeroleft'>Lite On Technology Corp LTR-659 Proximity sensor</td><td class='valuezeroleft'>1</td><td class='valuezeroleft'>1</td></tr>					
+				</tbody>
+			</table>
+		</div>
+		
+		<!-- Features -->
+		<div id='tabs-features' class='tab-pane fade reportdiv'>
+			<table id='features' class='table table-striped table-bordered table-hover responsive' style='width:100%;'>
+				<thead>
+					<tr>
+						<th>Device features</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+<td class='firstcolumn' colspan=2>android.hardware.bluetooth</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.hardware.camera</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.hardware.camera.autofocus</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.hardware.camera.front</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.hardware.faketouch</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.hardware.location</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.hardware.location.gps</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.hardware.location.network</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.hardware.microphone</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.hardware.screen.landscape</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.hardware.screen.portrait</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.hardware.sensor.accelerometer</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.hardware.sensor.compass</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.hardware.sensor.light</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.hardware.sensor.proximity</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.hardware.telephony</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.hardware.telephony.gsm</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.hardware.touchscreen</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.hardware.touchscreen.multitouch</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.hardware.touchscreen.multitouch.distinct</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.hardware.touchscreen.multitouch.jazzhand</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.hardware.usb.accessory</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.hardware.wifi</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.software.live_wallpaper</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.hardware.camera.any</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.software.app_widgets</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.software.home_screen</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.software.input_methods</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.hardware.bluetooth_le</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.hardware.sensor.gyroscope</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.hardware.usb.host</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.hardware.wifi.direct</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.software.device_admin</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.hardware.ethernet</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.software.backup</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.software.print</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.software.voice_recognizers</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.software.webview</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>com.nvidia.feature.DirectStylus</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>com.nvidia.nvsi.gpu.class_001</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>com.nvidia.nvsi.gpu.class_002</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>com.nvidia.nvsi.gpu.family_001</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>com.nvidia.nvsi.version.v2</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>nvidia.feature.controller_settings_ui</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.hardware.audio.output</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>android.software.managed_users</td>
+</tr><tr>
+<td class='firstcolumn' colspan=2>com.nvidia.nvsi.product.TegraNOTE7</td>
+</tr>				</tbody>
+			</table>
+		</div>
+    
+	</div>
+
+<center>
+<div style="margin-top:50px;">
+	<font color="#B0B0B0" size="1">
+		<a rel="license" href="https://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Lizenzvertrag" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under the <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International Lizenz</a>.
+		<br><br>
+		glESCapsViewer OpenGL ES capabilities database - &copy; 2011-2023 by <a href="https://www.saschawillems.de/" target="blank">Sascha Willems</a><br>
+		OpenGL is a registered trademark and the OpenGL ES logo is a trademark of Silicon Graphics Inc. used by permission by Khronos.
+	</font>
+</div>
+</center>
+     
+
+	<script>
+    	$(document).ready(function() 
+        {
+            var tableNames = [ "#implementation", "#extensions", '#eglextensions', '#compressedformats', '#sensors', '#features', '#shaderformats', '#programformats' ];
+	        for (var i=0; i < tableNames.length; i++) 
+            {           
+                $(tableNames[i]).DataTable({
+					"pageLength" : -1,
+					"paging" : false,
+					"order": [], 
+					"searchHighlight": true,
+					"bAutoWidth": false,
+					"sDom": 'flpt',
+					"deferRender": true,
+					"processing": true,				
+                    "searchHighlight": true
+                });
+            }
+		} );	
+	</script>    
+
+</center>	   
+</body>
+</html>
