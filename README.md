@@ -41,4 +41,7 @@ Note: I loaded `alldata.csv` into Google Sheets. It took 20-60mins to import it?
 
 So, `query.js` can be modified as an example of querying yourself.
 
+```
+node query.js
+```
 
