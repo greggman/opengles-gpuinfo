@@ -1,0 +1,152 @@
+{
+  "Device": {
+    "Device": "Samsung Galaxy Tab 2 (GT-P5100)",
+    "Android version": "4.2.2",
+    "Screen width": 1280,
+    "Screen height": 752,
+    "CPU cores": 2,
+    "CPU speed (MHz)": 1008,
+    "CPU architecture": "armv7l",
+    "Submitted at": "2014-03-22 18:23:03",
+    "Submitted by": "y"
+  },
+  "OpenGL ES renderer": {
+    "GL_VENDOR": "Imagination Technologies",
+    "GL_RENDERER": "PowerVR SGX 540",
+    "GL_VERSION": "OpenGL ES 2.0 build 1.9@2166536",
+    "GL_SHADING_LANGUAGE_VERSION": "OpenGL ES GLSL ES 1.00 build 1.9@2166536"
+  },
+  "EGL implementation": {
+    "EGL_VENDOR": "Android",
+    "EGL_VERSION": "1.4 Android META-EGL",
+    "Client APIs": "OpenGL_ES"
+  },
+  "OpenGL ES 2.0 capabilities": {
+    "GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS": 8,
+    "GL_MAX_CUBE_MAP_TEXTURE_SIZE": 2048,
+    "GL_MAX_FRAGMENT_UNIFORM_VECTORS": 64,
+    "GL_MAX_RENDERBUFFER_SIZE": 2048,
+    "GL_MAX_TEXTURE_IMAGE_UNITS": 8,
+    "GL_MAX_TEXTURE_SIZE": 2048,
+    "GL_MAX_VARYING_VECTORS": 8,
+    "GL_MAX_VERTEX_ATTRIBS": 8,
+    "GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS": 8,
+    "GL_MAX_VERTEX_UNIFORM_VECTORS": 128,
+    "GL_MAX_VIEWPORT_DIMS": 2048,
+    "GL_NUM_COMPRESSED_TEXTURE_FORMATS": 5,
+    "GL_NUM_SHADER_BINARY_FORMATS": 1,
+    "GL_NUM_PROGRAM_BINARY_FORMATS": 1
+  },
+  "OpenGL ES 3.0 capabilities": {
+    "not supported": ""
+  },
+  "extensions": [
+    "GL_EXT_debug_marker",
+    "GL_EXT_texture_format_BGRA8888",
+    "GL_OES_compressed_ETC1_RGB8_texture",
+    "GL_OES_depth_texture",
+    "GL_OES_depth24",
+    "GL_OES_EGL_image",
+    "GL_OES_EGL_image_external",
+    "GL_OES_element_index_uint",
+    "GL_OES_fragment_precision_high",
+    "GL_OES_get_program_binary",
+    "GL_OES_packed_depth_stencil",
+    "GL_OES_rgb8_rgba8",
+    "GL_OES_standard_derivatives",
+    "GL_OES_texture_float",
+    "GL_OES_texture_half_float",
+    "GL_OES_vertex_half_float",
+    "GL_OES_vertex_array_object",
+    "GL_EXT_discard_framebuffer",
+    "GL_EXT_shader_texture_lod",
+    "GL_OES_mapbuffer",
+    "GL_EXT_multi_draw_arrays",
+    "GL_OES_required_internalformat",
+    "GL_IMG_read_format",
+    "GL_IMG_texture_compression_pvrtc",
+    "GL_IMG_texture_format_BGRA8888",
+    "GL_IMG_shader_binary",
+    "GL_IMG_texture_npot",
+    "GL_IMG_program_binary",
+    "GL_IMG_uniform_buffer_object",
+    "GL_IMG_multisampled_render_to_texture"
+  ],
+  "eglextensions": [
+    "EGL_KHR_image",
+    "EGL_KHR_image_base",
+    "EGL_KHR_gl_texture_2D_image",
+    "EGL_KHR_gl_texture_cubemap_image",
+    "EGL_KHR_gl_renderbuffer_image",
+    "EGL_KHR_fence_sync",
+    "EGL_ANDROID_image_native_buffer"
+  ],
+  "compressedformats": [
+    "GL_ETC1_RGB8_OES",
+    "GL_COMPRESSED_RGB_PVRTC_2BPPV1_IMG",
+    "GL_COMPRESSED_RGBA_PVRTC_2BPPV1_IMG",
+    "GL_COMPRESSED_RGB_PVRTC_4BPPV1_IMG",
+    "GL_COMPRESSED_RGBA_PVRTC_4BPPV1_IMG"
+  ],
+  "shaderformats": [
+    "SGX_BINARY_IMG"
+  ],
+  "programformats": [
+    "SGX_PROGRAM_BINARY_IMG"
+  ],
+  "features": [
+    "android.hardware.bluetooth",
+    "android.hardware.camera",
+    "android.hardware.camera.front",
+    "android.hardware.faketouch",
+    "android.hardware.location",
+    "android.hardware.location.gps",
+    "android.hardware.location.network",
+    "android.hardware.microphone",
+    "android.hardware.screen.landscape",
+    "android.hardware.screen.portrait",
+    "android.hardware.sensor.accelerometer",
+    "android.hardware.sensor.compass",
+    "android.hardware.sensor.light",
+    "android.hardware.telephony",
+    "android.hardware.telephony.gsm",
+    "android.hardware.touchscreen",
+    "android.hardware.touchscreen.multitouch",
+    "android.hardware.touchscreen.multitouch.distinct",
+    "android.hardware.touchscreen.multitouch.jazzhand",
+    "android.hardware.usb.accessory",
+    "android.hardware.wifi",
+    "android.software.live_wallpaper",
+    "android.software.sip",
+    "android.software.sip.voip",
+    "android.hardware.camera.any",
+    "android.hardware.usb.host",
+    "android.hardware.wifi.direct",
+    "com.sec.android.mdm",
+    "com.sec.feature.minimode",
+    "android.hardware.audio.low_latency",
+    "com.sec.feature.minimode_tray"
+  ],
+  "sensors": {
+    "BMA254 Acceleration Sensor": {
+      "maxRange": "19.6133",
+      "resolution": "0.0383072"
+    },
+    "MS-3E (YAS530) Magnetic Sensor": {
+      "maxRange": 800,
+      "resolution": "0.3"
+    },
+    "MS-x Orientation Sensor": {
+      "maxRange": 360,
+      "resolution": 1
+    },
+    "BH1721 Light Sensor": {
+      "maxRange": 0,
+      "resolution": 0
+    },
+    "Auto Rotation Sensor": {
+      "maxRange": 255,
+      "resolution": 0
+    }
+  }
+}

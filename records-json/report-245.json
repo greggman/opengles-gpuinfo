@@ -1,0 +1,130 @@
+{
+  "Device": {
+    "Device": "G31M-ES2L",
+    "Android version": "4.3",
+    "Screen width": 1024,
+    "Screen height": 720,
+    "CPU cores": 2,
+    "CPU speed (MHz)": 1900,
+    "CPU architecture": "i686",
+    "Submitted at": "2014-11-03 23:32:53",
+    "Submitted by": ""
+  },
+  "OpenGL ES renderer": {
+    "GL_VENDOR": "X.Org",
+    "GL_RENDERER": "Gallium 0.4 on AMD CEDAR",
+    "GL_VERSION": "OpenGL ES 2.0 Mesa 9.2.0-devel (git-9cc0a0d)",
+    "GL_SHADING_LANGUAGE_VERSION": "OpenGL ES GLSL ES 1.0.16"
+  },
+  "EGL implementation": {
+    "EGL_VENDOR": "Android",
+    "EGL_VERSION": "1.4 Android META-EGL",
+    "Client APIs": "OpenGL_ES"
+  },
+  "OpenGL ES 2.0 capabilities": {
+    "GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS": 32,
+    "GL_MAX_CUBE_MAP_TEXTURE_SIZE": 16384,
+    "GL_MAX_FRAGMENT_UNIFORM_VECTORS": 4096,
+    "GL_MAX_RENDERBUFFER_SIZE": 16384,
+    "GL_MAX_TEXTURE_IMAGE_UNITS": 16,
+    "GL_MAX_TEXTURE_SIZE": 16384,
+    "GL_MAX_VARYING_VECTORS": 32,
+    "GL_MAX_VERTEX_ATTRIBS": 16,
+    "GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS": 16,
+    "GL_MAX_VERTEX_UNIFORM_VECTORS": 4096,
+    "GL_MAX_VIEWPORT_DIMS": 16384,
+    "GL_NUM_COMPRESSED_TEXTURE_FORMATS": 3,
+    "GL_NUM_SHADER_BINARY_FORMATS": 0,
+    "GL_NUM_PROGRAM_BINARY_FORMATS": 0
+  },
+  "OpenGL ES 3.0 capabilities": {
+    "not supported": ""
+  },
+  "extensions": [
+    "GL_EXT_texture_format_BGRA8888",
+    "GL_EXT_texture_type_2_10_10_10_REV",
+    "GL_OES_depth_texture",
+    "GL_OES_depth24",
+    "GL_OES_EGL_image",
+    "GL_OES_EGL_image_external",
+    "GL_OES_element_index_uint",
+    "GL_OES_fbo_render_mipmap",
+    "GL_OES_get_program_binary",
+    "GL_OES_packed_depth_stencil",
+    "GL_OES_rgb8_rgba8",
+    "GL_OES_standard_derivatives",
+    "GL_OES_texture_3D",
+    "GL_OES_texture_npot",
+    "GL_OES_vertex_array_object",
+    "GL_EXT_texture_filter_anisotropic",
+    "GL_EXT_discard_framebuffer",
+    "GL_OES_depth_texture_cube_map",
+    "GL_OES_stencil8",
+    "GL_EXT_blend_minmax",
+    "GL_OES_mapbuffer",
+    "GL_NV_draw_buffers",
+    "GL_EXT_texture_compression_dxt1",
+    "GL_EXT_texture_compression_s3tc",
+    "GL_NV_read_buffer",
+    "GL_NV_fbo_color_attachments",
+    "GL_EXT_read_format_bgra",
+    "GL_EXT_unpack_subimage",
+    "GL_EXT_multi_draw_arrays",
+    "GL_EXT_texture_rg",
+    "GL_APPLE_texture_max_level",
+    "GL_ANGLE_texture_compression_dxt3",
+    "GL_ANGLE_texture_compression_dxt5",
+    "GL_EXT_map_buffer_range"
+  ],
+  "eglextensions": [
+    "EGL_KHR_image_base",
+    "EGL_KHR_fence_sync",
+    "EGL_ANDROID_image_native_buffer",
+    "EGL_KHR_reusable_sync"
+  ],
+  "compressedformats": [
+    "GL_COMPRESSED_RGB_S3TC_DXT1",
+    "GL_COMPRESSED_RGBA_S3TC_DXT5"
+  ],
+  "shaderformats": [],
+  "programformats": [],
+  "features": [
+    "android.hardware.bluetooth",
+    "android.hardware.camera",
+    "android.hardware.camera.autofocus",
+    "android.hardware.camera.flash",
+    "android.hardware.camera.front",
+    "android.hardware.faketouch",
+    "android.hardware.location",
+    "android.hardware.location.gps",
+    "android.hardware.microphone",
+    "android.hardware.screen.landscape",
+    "android.hardware.screen.portrait",
+    "android.hardware.sensor.accelerometer",
+    "android.hardware.sensor.compass",
+    "android.hardware.sensor.light",
+    "android.hardware.sensor.proximity",
+    "android.hardware.touchscreen",
+    "android.hardware.touchscreen.multitouch",
+    "android.hardware.touchscreen.multitouch.distinct",
+    "android.hardware.touchscreen.multitouch.jazzhand",
+    "android.hardware.usb.accessory",
+    "android.hardware.wifi",
+    "android.software.live_wallpaper",
+    "android.software.sip",
+    "android.software.sip.voip",
+    "android.hardware.camera.any",
+    "android.software.app_widgets",
+    "android.software.home_screen",
+    "android.software.input_methods",
+    "android.hardware.sensor.barometer",
+    "android.hardware.sensor.gyroscope",
+    "android.hardware.usb.host"
+  ],
+  "sensors": {
+    "Kbd Orientation Sensor": {
+      "maxRange": "2.8",
+      "resolution": "0.000248016"
+    }
+  }
+}

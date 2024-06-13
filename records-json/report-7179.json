@@ -1,0 +1,37 @@
+{
+  "Device": {
+    "Device": "",
+    "Android version": "",
+    "Screen width": 0,
+    "Screen height": 0,
+    "CPU cores": "",
+    "CPU speed (MHz)": "",
+    "CPU architecture": "",
+    "Submitted at": "2024-02-16 11:22:50",
+    "Submitted by": ""
+  },
+  "OpenGL ES renderer": {
+    "GL_VENDOR": "",
+    "GL_RENDERER": "",
+    "GL_VERSION": "",
+    "GL_SHADING_LANGUAGE_VERSION": ""
+  },
+  "EGL implementation": {
+    "EGL_VENDOR": "",
+    "EGL_VERSION": "",
+    "Client APIs": ""
+  },
+  "OpenGL ES 2.0 capabilities": {
+    "not supported": ""
+  },
+  "OpenGL ES 3.0 capabilities": {
+    "not supported": ""
+  },
+  "extensions": [],
+  "eglextensions": [],
+  "compressedformats": [],
+  "shaderformats": [],
+  "programformats": [],
+  "features": [],
+  "sensors": {}
+}

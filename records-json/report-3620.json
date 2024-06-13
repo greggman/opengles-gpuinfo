@@ -1,0 +1,192 @@
+{
+  "Device": {
+    "Device": "AndyWin",
+    "Android version": "7.1.2",
+    "Screen width": 1380,
+    "Screen height": 720,
+    "CPU cores": 2,
+    "CPU speed (MHz)": 2000,
+    "CPU architecture": "i686",
+    "Submitted at": "2019-05-28 15:45:21",
+    "Submitted by": ""
+  },
+  "OpenGL ES renderer": {
+    "GL_VENDOR": "Qualcomm",
+    "GL_RENDERER": "Adreno (TM) 225",
+    "GL_VERSION": "OpenGL ES 2.0",
+    "GL_SHADING_LANGUAGE_VERSION": "OpenGL ES GLSL ES 1.0.17"
+  },
+  "EGL implementation": {
+    "EGL_VENDOR": "Android",
+    "EGL_VERSION": "1.4 Android META-EGL",
+    "Client APIs": "OpenGL_ES"
+  },
+  "OpenGL ES 2.0 capabilities": {
+    "GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS": 108,
+    "GL_MAX_CUBE_MAP_TEXTURE_SIZE": 16384,
+    "GL_MAX_FRAGMENT_UNIFORM_VECTORS": 4096,
+    "GL_MAX_RENDERBUFFER_SIZE": 16384,
+    "GL_MAX_TEXTURE_IMAGE_UNITS": 18,
+    "GL_MAX_TEXTURE_SIZE": 16384,
+    "GL_MAX_VARYING_VECTORS": 32,
+    "GL_MAX_VERTEX_ATTRIBS": 28,
+    "GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS": 18,
+    "GL_MAX_VERTEX_UNIFORM_VECTORS": 4096,
+    "GL_MAX_VIEWPORT_DIMS": 16384,
+    "GL_NUM_COMPRESSED_TEXTURE_FORMATS": 19,
+    "GL_NUM_SHADER_BINARY_FORMATS": 0,
+    "GL_NUM_PROGRAM_BINARY_FORMATS": 1
+  },
+  "OpenGL ES 3.0 capabilities": {
+    "not supported": ""
+  },
+  "extensions": [
+    "GL_EXT_debug_marker",
+    "GL_EXT_texture_format_BGRA8888",
+    "GL_OES_compressed_ETC1_RGB8_texture",
+    "GL_OES_depth_texture",
+    "GL_OES_depth24",
+    "GL_OES_EGL_image",
+    "GL_OES_EGL_image_external",
+    "GL_OES_element_index_uint",
+    "GL_OES_packed_depth_stencil",
+    "GL_OES_rgb8_rgba8",
+    "GL_OES_texture_float",
+    "GL_OES_texture_npot",
+    "GL_EXT_texture_filter_anisotropic",
+    "GL_OES_depth32",
+    "GL_OES_texture_float_linear",
+    "GL_OES_compressed_paletted_texture",
+    "GL_APPLE_texture_format_BGRA8888",
+    "GL_EXT_texture_compression_dxt1",
+    "GL_EXT_texture_compression_s3tc",
+    "GL_NV_texture_compression_s3tc",
+    "GL_ANGLE_texture_compression_dxt1",
+    "GL_ANGLE_texture_compression_dxt3",
+    "GL_ANGLE_texture_compression_dxt5"
+  ],
+  "eglextensions": [
+    "EGL_KHR_image",
+    "EGL_KHR_image_base",
+    "EGL_KHR_gl_texture_2D_image",
+    "EGL_KHR_gl_renderbuffer_image",
+    "EGL_KHR_fence_sync",
+    "EGL_ANDROID_image_native_buffer",
+    "EGL_KHR_get_all_proc_addresses",
+    "EGL_ANDROID_presentation_time",
+    "EGL_KHR_swap_buffers_with_damage",
+    "EGL_ANDROID_create_native_client_buffer",
+    "EGL_ANDROID_front_buffer_auto_refresh"
+  ],
+  "compressedformats": [
+    "GL_COMPRESSED_SIGNED_R11_EAC",
+    "GL_COMPRESSED_RG11_EAC",
+    "GL_COMPRESSED_SIGNED_RG11_EAC",
+    "GL_COMPRESSED_RGB8_ETC2",
+    "GL_COMPRESSED_SRGB8_ETC2",
+    "GL_COMPRESSED_RGB8_PUNCHTHROUGH_ALPHA1_ETC2",
+    "GL_COMPRESSED_SRGB8_PUNCHTHROUGH_ALPHA1_ETC2",
+    "GL_COMPRESSED_RGBA8_ETC2_EAC",
+    "GL_COMPRESSED_SRGB8_ALPHA8_ETC2_EAC",
+    "GL_COMPRESSED_R11_EAC",
+    "GL_ETC1_RGB8_OES",
+    "GL_COMPRESSED_RGB_S3TC_DXT1",
+    "GL_COMPRESSED_RGBA_S3TC_DXT1",
+    "GL_COMPRESSED_RGBA_S3TC_DXT5",
+    "0x8e8c",
+    "0x8e8d",
+    "0x8e8e",
+    "0x8e8f",
+    "GL_COMPRESSED_RGBA_S3TC_DXT3"
+  ],
+  "shaderformats": [],
+  "programformats": [
+    "0x901e"
+  ],
+  "features": [
+    "android.hardware.bluetooth",
+    "android.hardware.camera",
+    "android.hardware.camera.flash",
+    "android.hardware.faketouch",
+    "android.hardware.location",
+    "android.hardware.location.gps",
+    "android.hardware.location.network",
+    "android.hardware.microphone",
+    "android.hardware.screen.landscape",
+    "android.hardware.screen.portrait",
+    "android.hardware.sensor.accelerometer",
+    "android.hardware.sensor.compass",
+    "android.hardware.sensor.light",
+    "android.hardware.touchscreen",
+    "android.hardware.touchscreen.multitouch",
+    "android.hardware.touchscreen.multitouch.distinct",
+    "android.hardware.touchscreen.multitouch.jazzhand",
+    "android.hardware.usb.accessory",
+    "android.hardware.wifi",
+    "android.software.live_wallpaper",
+    "android.software.sip",
+    "android.software.sip.voip",
+    "android.hardware.camera.any",
+    "android.software.app_widgets",
+    "android.software.home_screen",
+    "android.software.input_methods",
+    "android.hardware.sensor.barometer",
+    "android.hardware.sensor.gyroscope",
+    "android.hardware.usb.host",
+    "com.google.android.feature.GOOGLE_BUILD",
+    "android.software.device_admin",
+    "com.google.android.feature.GOOGLE_EXPERIENCE",
+    "com.google.android.feature.EXCHANGE_6_2",
+    "android.software.backup",
+    "android.software.print",
+    "android.software.voice_recognizers",
+    "android.software.webview",
+    "android.hardware.audio.output",
+    "android.software.connectionservice",
+    "android.software.managed_users",
+    "com.google.android.tv.installed",
+    "com.google.android.feature.PIXEL_EXPERIENCE",
+    "com.google.android.apps.photos.NEXUS_PRELOAD",
+    "com.google.android.apps.dialer.SUPPORTED",
+    "com.google.android.feature.ZERO_TOUCH",
+    "com.google.android.feature.PIXEL_2017_EXPERIENCE"
+  ],
+  "sensors": {
+    "Acceleration sensor": {
+      "maxRange": "19.6133",
+      "resolution": "0.00957681"
+    },
+    "Compass": {
+      "maxRange": 8000,
+      "resolution": "0.001"
+    },
+    "Gyroscope": {
+      "maxRange": "34.9",
+      "resolution": "0.001"
+    },
+    "Game Rotation Vector Sensor": {
+      "maxRange": 1,
+      "resolution": "5.96046E-8"
+    },
+    "GeoMag Rotation Vector Sensor": {
+      "maxRange": 1,
+      "resolution": "5.96046E-8"
+    },
+    "Gravity Sensor": {
+      "maxRange": "19.6133",
+      "resolution": "0.00957681"
+    },
+    "Linear Acceleration Sensor": {
+      "maxRange": "19.6133",
+      "resolution": "0.00957681"
+    },
+    "Rotation Vector Sensor": {
+      "maxRange": 1,
+      "resolution": "5.96046E-8"
+    },
+    "Orientation Sensor": {
+      "maxRange": 360,
+      "resolution": "0.00390625"
+    }
+  }
+}

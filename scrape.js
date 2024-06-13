@@ -1,6 +1,7 @@
+/* Reads record-entries.json and then downloads every webpage it references as HTML to records-html */
 import fs from 'fs';
 
-const records = JSON.parse(fs.readFileSync('records.json', {encoding: 'utf-8'}));
+const records = JSON.parse(fs.readFileSync('record-entries.json', {encoding: 'utf-8'}));
 console.log(records.data.length);
 console.log(JSON.stringify(records.data[0], null, 2));
 

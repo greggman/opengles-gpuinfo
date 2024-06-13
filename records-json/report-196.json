@@ -1,0 +1,136 @@
+{
+  "Device": {
+    "Device": "GT-S7272",
+    "Android version": "4.2.2",
+    "Screen width": 480,
+    "Screen height": 800,
+    "CPU cores": 2,
+    "CPU speed (MHz)": "999.999",
+    "CPU architecture": "armv7l",
+    "Submitted at": "2014-09-14 17:49:43",
+    "Submitted by": ""
+  },
+  "OpenGL ES renderer": {
+    "GL_VENDOR": "Broadcom",
+    "GL_RENDERER": "VideoCore IV HW",
+    "GL_VERSION": "OpenGL ES 2.0",
+    "GL_SHADING_LANGUAGE_VERSION": "OpenGL ES GLSL ES 1.00"
+  },
+  "EGL implementation": {
+    "EGL_VENDOR": "Android",
+    "EGL_VERSION": "1.4 Android META-EGL",
+    "Client APIs": "OpenGL_ES"
+  },
+  "OpenGL ES 2.0 capabilities": {
+    "GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS": 8,
+    "GL_MAX_CUBE_MAP_TEXTURE_SIZE": 2048,
+    "GL_MAX_FRAGMENT_UNIFORM_VECTORS": 256,
+    "GL_MAX_RENDERBUFFER_SIZE": 2048,
+    "GL_MAX_TEXTURE_IMAGE_UNITS": 8,
+    "GL_MAX_TEXTURE_SIZE": 2048,
+    "GL_MAX_VARYING_VECTORS": 8,
+    "GL_MAX_VERTEX_ATTRIBS": 8,
+    "GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS": 8,
+    "GL_MAX_VERTEX_UNIFORM_VECTORS": 256,
+    "GL_MAX_VIEWPORT_DIMS": 2048,
+    "GL_NUM_COMPRESSED_TEXTURE_FORMATS": 11,
+    "GL_NUM_SHADER_BINARY_FORMATS": 0,
+    "GL_NUM_PROGRAM_BINARY_FORMATS": 0
+  },
+  "OpenGL ES 3.0 capabilities": {
+    "not supported": ""
+  },
+  "extensions": [
+    "GL_EXT_debug_marker",
+    "GL_EXT_texture_format_BGRA8888",
+    "GL_OES_compressed_ETC1_RGB8_texture",
+    "GL_OES_depth24",
+    "GL_OES_EGL_image",
+    "GL_OES_EGL_image_external",
+    "GL_OES_packed_depth_stencil",
+    "GL_OES_rgb8_rgba8",
+    "GL_OES_texture_npot",
+    "GL_OES_vertex_half_float",
+    "GL_OES_depth32",
+    "GL_OES_compressed_paletted_texture",
+    "GL_EXT_discard_framebuffer",
+    "GL_APPLE_rgb_422"
+  ],
+  "eglextensions": [
+    "EGL_KHR_image",
+    "EGL_KHR_image_base",
+    "EGL_KHR_fence_sync",
+    "EGL_ANDROID_image_native_buffer",
+    "EGL_KHR_image_pixmap"
+  ],
+  "compressedformats": [
+    "GL_ETC1_RGB8_OES",
+    "GL_PALETTE4_RGB8_OES",
+    "GL_PALETTE4_RGBA8_OES",
+    "GL_PALETTE4_R5_G6_B5_OES",
+    "GL_PALETTE4_RGBA4_OES",
+    "GL_PALETTE4_RGB5_A1_OES",
+    "GL_PALETTE8_RGB8_OES",
+    "GL_PALETTE8_RGBA8_OES",
+    "GL_PALETTE8_R5_G6_B5_OES",
+    "GL_PALETTE8_RGBA4_OES",
+    "GL_PALETTE8_RGB5_A1_OES"
+  ],
+  "shaderformats": [],
+  "programformats": [],
+  "features": [
+    "android.hardware.bluetooth",
+    "android.hardware.camera",
+    "android.hardware.camera.autofocus",
+    "android.hardware.camera.flash",
+    "android.hardware.camera.front",
+    "android.hardware.faketouch",
+    "android.hardware.location",
+    "android.hardware.location.gps",
+    "android.hardware.location.network",
+    "android.hardware.microphone",
+    "android.hardware.screen.landscape",
+    "android.hardware.screen.portrait",
+    "android.hardware.sensor.accelerometer",
+    "android.hardware.sensor.compass",
+    "android.hardware.sensor.proximity",
+    "android.hardware.telephony",
+    "android.hardware.telephony.gsm",
+    "android.hardware.touchscreen",
+    "android.hardware.touchscreen.multitouch",
+    "android.hardware.touchscreen.multitouch.distinct",
+    "android.hardware.touchscreen.multitouch.jazzhand",
+    "android.hardware.usb.accessory",
+    "android.hardware.wifi",
+    "android.software.live_wallpaper",
+    "android.software.sip",
+    "android.software.sip.voip",
+    "android.hardware.camera.any",
+    "android.hardware.usb.host",
+    "android.hardware.wifi.direct",
+    "com.sec.android.mdm",
+    "com.sec.feature.minimode"
+  ],
+  "sensors": {
+    "GP2A Proximity sensor": {
+      "maxRange": 5,
+      "resolution": 5
+    },
+    "BOSCH BMC150 Acceleration Sensor": {
+      "maxRange": "156.88",
+      "resolution": "0.0095752"
+    },
+    "BOSCH BMC150 Magnetic Field Sensor": {
+      "maxRange": 1600,
+      "resolution": "0.3"
+    },
+    "BOSCH Orientation Sensor": {
+      "maxRange": 360,
+      "resolution": 1
+    },
+    "Auto Rotation Sensor": {
+      "maxRange": 255,
+      "resolution": 0
+    }
+  }
+}

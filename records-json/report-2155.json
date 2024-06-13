@@ -1,0 +1,267 @@
+{
+  "Device": {
+    "Device": "Android SDK built for x86",
+    "Android version": "P",
+    "Screen width": 1080,
+    "Screen height": 1794,
+    "CPU cores": 2,
+    "CPU speed (MHz)": 0,
+    "CPU architecture": "i686",
+    "Submitted at": "2018-03-12 13:00:50",
+    "Submitted by": "oscarbg\n"
+  },
+  "OpenGL ES renderer": {
+    "GL_VENDOR": "Google (ATI Technologies Inc.)",
+    "GL_RENDERER": "Android Emulator OpenGL ES Translator (Radeon RX Vega)",
+    "GL_VERSION": "OpenGL ES 3.0 (4.5.13507 Core Profile Context 23.20.15025.3005)",
+    "GL_SHADING_LANGUAGE_VERSION": "OpenGL ES GLSL ES 3.00"
+  },
+  "EGL implementation": {
+    "EGL_VENDOR": "Android",
+    "EGL_VERSION": "1.4 Android META-EGL",
+    "Client APIs": "OpenGL_ES"
+  },
+  "OpenGL ES 2.0 capabilities": {
+    "GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS": 160,
+    "GL_MAX_CUBE_MAP_TEXTURE_SIZE": 16384,
+    "GL_MAX_FRAGMENT_UNIFORM_VECTORS": 4096,
+    "GL_MAX_RENDERBUFFER_SIZE": 16384,
+    "GL_MAX_TEXTURE_IMAGE_UNITS": 32,
+    "GL_MAX_TEXTURE_SIZE": 16384,
+    "GL_MAX_VARYING_VECTORS": 32,
+    "GL_MAX_VERTEX_ATTRIBS": 29,
+    "GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS": 32,
+    "GL_MAX_VERTEX_UNIFORM_VECTORS": 4096,
+    "GL_MAX_VIEWPORT_DIMS": 16384,
+    "GL_NUM_COMPRESSED_TEXTURE_FORMATS": 22,
+    "GL_NUM_SHADER_BINARY_FORMATS": 0,
+    "GL_NUM_PROGRAM_BINARY_FORMATS": 1
+  },
+  "OpenGL ES 3.0 capabilities": {
+    "GL_MAX_3D_TEXTURE_SIZE": 2048,
+    "GL_MAX_ARRAY_TEXTURE_LAYERS": 2048,
+    "GL_MAX_COLOR_ATTACHMENTS": 8,
+    "GL_MAX_COMBINED_FRAGMENT_UNIFORM_COMPONENTS": 2147483389,
+    "GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS": 160,
+    "GL_MAX_COMBINED_UNIFORM_BLOCKS": 90,
+    "GL_MAX_COMBINED_VERTEX_UNIFORM_COMPONENTS": 2147483389,
+    "GL_MAX_CUBE_MAP_TEXTURE_SIZE": 16384,
+    "GL_MAX_DRAW_BUFFERS": 8,
+    "GL_MAX_ELEMENT_INDEX": "-1",
+    "GL_MAX_ELEMENTS_INDICES": 536870911,
+    "GL_MAX_ELEMENTS_VERTICES": 536870911,
+    "GL_MAX_FRAGMENT_INPUT_COMPONENTS": 128,
+    "GL_MAX_FRAGMENT_UNIFORM_BLOCKS": 15,
+    "GL_MAX_FRAGMENT_UNIFORM_COMPONENTS": 16384,
+    "GL_MAX_FRAGMENT_UNIFORM_VECTORS": 4096,
+    "GL_MIN_PROGRAM_TEXEL_OFFSET": "-8",
+    "GL_MAX_PROGRAM_TEXEL_OFFSET": 7,
+    "GL_MAX_RENDERBUFFER_SIZE": 16384,
+    "GL_MAX_SAMPLES": 4,
+    "GL_MAX_SERVER_WAIT_TIMEOUT": 2147483647,
+    "GL_MAX_TEXTURE_IMAGE_UNITS": 32,
+    "GL_MAX_TEXTURE_LOD_BIAS": 16,
+    "GL_MAX_TEXTURE_SIZE": 16384,
+    "GL_MAX_TRANSFORM_FEEDBACK_INTERLEAVED_COMPONENTS": 128,
+    "GL_MAX_TRANSFORM_FEEDBACK_SEPARATE_ATTRIBS": 4,
+    "GL_MAX_TRANSFORM_FEEDBACK_SEPARATE_COMPONENTS": 4,
+    "GL_MAX_UNIFORM_BLOCK_SIZE": 572657868,
+    "GL_MAX_UNIFORM_BUFFER_BINDINGS": 90,
+    "GL_MAX_VARYING_COMPONENTS": 128,
+    "GL_MAX_VARYING_VECTORS": 32,
+    "GL_MAX_VERTEX_ATTRIBS": 29,
+    "GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS": 32,
+    "GL_MAX_VERTEX_OUTPUT_COMPONENTS": 128,
+    "GL_MAX_VERTEX_UNIFORM_BLOCKS": 15,
+    "GL_MAX_VERTEX_UNIFORM_COMPONENTS": 16384,
+    "GL_MAX_VERTEX_UNIFORM_VECTORS": 4096,
+    "GL_MAX_VIEWPORT_DIMS": 16384
+  },
+  "extensions": [
+    "GL_EXT_debug_marker",
+    "GL_OES_compressed_ETC1_RGB8_texture",
+    "GL_OES_depth_texture",
+    "GL_OES_depth24",
+    "GL_OES_EGL_image",
+    "GL_OES_EGL_image_external",
+    "GL_OES_element_index_uint",
+    "GL_OES_packed_depth_stencil",
+    "GL_OES_rgb8_rgba8",
+    "GL_OES_texture_float",
+    "GL_OES_texture_half_float",
+    "GL_OES_texture_half_float_linear",
+    "GL_OES_texture_npot",
+    "GL_OES_vertex_half_float",
+    "GL_OES_vertex_array_object",
+    "GL_OES_depth32",
+    "GL_OES_texture_float_linear",
+    "GL_OES_compressed_paletted_texture",
+    "GL_EXT_color_buffer_float",
+    "ANDROID_EMU_CHECKSUM_HELPER_v1",
+    "ANDROID_EMU_dma_v1",
+    "ANDROID_EMU_gles_max_version_3_0",
+    "ANDROID_EMU_native_sync_v2",
+    "ANDROID_EMU_native_sync_v3"
+  ],
+  "eglextensions": [
+    "EGL_KHR_image",
+    "EGL_KHR_image_base",
+    "EGL_KHR_gl_texture_2D_image",
+    "EGL_KHR_fence_sync",
+    "EGL_ANDROID_image_native_buffer",
+    "EGL_KHR_create_context",
+    "EGL_KHR_wait_sync",
+    "EGL_KHR_get_all_proc_addresses",
+    "EGL_ANDROID_presentation_time",
+    "EGL_ANDROID_recordable",
+    "EGL_KHR_swap_buffers_with_damage",
+    "EGL_ANDROID_front_buffer_auto_refresh",
+    "EGL_ANDROID_get_native_client_buffer",
+    "EGL_ANDROID_get_frame_timestamps",
+    "EGL_EXT_surface_SMPTE2086_metadata",
+    "EGL_EXT_surface_CTA861_3_metadata"
+  ],
+  "compressedformats": [
+    "GL_COMPRESSED_SIGNED_R11_EAC",
+    "GL_COMPRESSED_RG11_EAC",
+    "GL_COMPRESSED_SIGNED_RG11_EAC",
+    "GL_COMPRESSED_RGB8_ETC2",
+    "GL_COMPRESSED_SRGB8_ETC2",
+    "GL_COMPRESSED_RGB8_PUNCHTHROUGH_ALPHA1_ETC2",
+    "GL_COMPRESSED_SRGB8_PUNCHTHROUGH_ALPHA1_ETC2",
+    "GL_COMPRESSED_RGBA8_ETC2_EAC",
+    "GL_COMPRESSED_SRGB8_ALPHA8_ETC2_EAC",
+    "GL_COMPRESSED_R11_EAC",
+    "GL_ETC1_RGB8_OES",
+    "GL_PALETTE4_RGB8_OES",
+    "GL_PALETTE4_RGBA8_OES",
+    "GL_PALETTE4_R5_G6_B5_OES",
+    "GL_PALETTE4_RGBA4_OES",
+    "GL_PALETTE4_RGB5_A1_OES",
+    "GL_PALETTE8_RGB8_OES",
+    "GL_PALETTE8_RGBA8_OES",
+    "GL_PALETTE8_R5_G6_B5_OES",
+    "GL_PALETTE8_RGBA4_OES",
+    "GL_PALETTE8_RGB5_A1_OES"
+  ],
+  "shaderformats": [],
+  "programformats": [
+    "0x901e"
+  ],
+  "features": [
+    "android.hardware.camera",
+    "android.hardware.faketouch",
+    "android.hardware.location",
+    "android.hardware.location.gps",
+    "android.hardware.location.network",
+    "android.hardware.microphone",
+    "android.hardware.screen.landscape",
+    "android.hardware.screen.portrait",
+    "android.hardware.sensor.accelerometer",
+    "android.hardware.sensor.compass",
+    "android.hardware.sensor.light",
+    "android.hardware.sensor.proximity",
+    "android.hardware.telephony",
+    "android.hardware.telephony.gsm",
+    "android.hardware.touchscreen",
+    "android.hardware.touchscreen.multitouch",
+    "android.hardware.touchscreen.multitouch.distinct",
+    "android.hardware.touchscreen.multitouch.jazzhand",
+    "android.hardware.wifi",
+    "android.software.live_wallpaper",
+    "android.hardware.camera.any",
+    "android.software.app_widgets",
+    "android.software.home_screen",
+    "android.software.input_methods",
+    "android.hardware.sensor.barometer",
+    "android.hardware.sensor.gyroscope",
+    "com.google.android.feature.GOOGLE_BUILD",
+    "android.software.device_admin",
+    "com.google.android.feature.GOOGLE_EXPERIENCE",
+    "com.google.android.feature.EXCHANGE_6_2",
+    "android.software.backup",
+    "android.software.print",
+    "android.software.voice_recognizers",
+    "android.software.webview",
+    "android.hardware.audio.output",
+    "android.software.connectionservice",
+    "android.software.managed_users",
+    "android.hardware.sensor.ambient_temperature",
+    "android.software.midi",
+    "android.hardware.sensor.relative_humidity",
+    "android.hardware.fingerprint",
+    "android.software.picture_in_picture",
+    "android.software.autofill",
+    "android.software.cts",
+    "android.software.preview_sdk",
+    "com.google.android.apps.dialer.SUPPORTED",
+    "android.hardware.ram.normal",
+    "android.software.adoptable_storage"
+  ],
+  "sensors": {
+    "Goldfish 3-axis Accelerometer": {
+      "maxRange": "2.8",
+      "resolution": "0.000248016"
+    },
+    "Goldfish 3-axis Gyroscope": {
+      "maxRange": "11.1111",
+      "resolution": "0.001"
+    },
+    "Goldfish 3-axis Magnetic field sensor": {
+      "maxRange": 2000,
+      "resolution": 1
+    },
+    "Goldfish Orientation sensor": {
+      "maxRange": 360,
+      "resolution": 1
+    },
+    "Goldfish Temperature sensor": {
+      "maxRange": 80,
+      "resolution": 1
+    },
+    "Goldfish Proximity sensor": {
+      "maxRange": 1,
+      "resolution": 1
+    },
+    "Goldfish Light sensor": {
+      "maxRange": 40000,
+      "resolution": 1
+    },
+    "Goldfish Pressure sensor": {
+      "maxRange": 800,
+      "resolution": 1
+    },
+    "Goldfish Humidity sensor": {
+      "maxRange": 100,
+      "resolution": 1
+    },
+    "Goldfish 3-axis Magnetic field sensor (uncalibrated)": {
+      "maxRange": 2000,
+      "resolution": 1
+    },
+    "Game Rotation Vector Sensor": {
+      "maxRange": 1,
+      "resolution": "5.96046E-8"
+    },
+    "GeoMag Rotation Vector Sensor": {
+      "maxRange": 1,
+      "resolution": "5.96046E-8"
+    },
+    "Gravity Sensor": {
+      "maxRange": "19.6133",
+      "resolution": "0.000248016"
+    },
+    "Linear Acceleration Sensor": {
+      "maxRange": "19.6133",
+      "resolution": "0.000248016"
+    },
+    "Rotation Vector Sensor": {
+      "maxRange": 1,
+      "resolution": "5.96046E-8"
+    },
+    "Orientation Sensor": {
+      "maxRange": 360,
+      "resolution": "0.00390625"
+    }
+  }
+}

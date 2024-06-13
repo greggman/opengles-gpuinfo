@@ -1,0 +1,256 @@
+{
+  "Device": {
+    "Device": "SCH-I535",
+    "Android version": "4.4.2",
+    "Screen width": 720,
+    "Screen height": 1280,
+    "CPU cores": 2,
+    "CPU speed (MHz)": 1512,
+    "CPU architecture": "armv7l",
+    "Submitted at": "2018-12-30 20:46:36",
+    "Submitted by": ""
+  },
+  "OpenGL ES renderer": {
+    "GL_VENDOR": "Qualcomm",
+    "GL_RENDERER": "Adreno (TM) 225",
+    "GL_VERSION": "OpenGL ES 2.0 V@45.0 AU@04.04.00.007.018 (CL@3869936)",
+    "GL_SHADING_LANGUAGE_VERSION": "OpenGL ES GLSL ES 1.00"
+  },
+  "EGL implementation": {
+    "EGL_VENDOR": "Android",
+    "EGL_VERSION": "1.4 Android META-EGL",
+    "Client APIs": "OpenGL_ES"
+  },
+  "OpenGL ES 2.0 capabilities": {
+    "GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS": 20,
+    "GL_MAX_CUBE_MAP_TEXTURE_SIZE": 4096,
+    "GL_MAX_FRAGMENT_UNIFORM_VECTORS": 224,
+    "GL_MAX_RENDERBUFFER_SIZE": 4096,
+    "GL_MAX_TEXTURE_IMAGE_UNITS": 16,
+    "GL_MAX_TEXTURE_SIZE": 4096,
+    "GL_MAX_VARYING_VECTORS": 8,
+    "GL_MAX_VERTEX_ATTRIBS": 16,
+    "GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS": 4,
+    "GL_MAX_VERTEX_UNIFORM_VECTORS": 256,
+    "GL_MAX_VIEWPORT_DIMS": 4096,
+    "GL_NUM_COMPRESSED_TEXTURE_FORMATS": 16,
+    "GL_NUM_SHADER_BINARY_FORMATS": 0,
+    "GL_NUM_PROGRAM_BINARY_FORMATS": 1
+  },
+  "OpenGL ES 3.0 capabilities": {
+    "not supported": ""
+  },
+  "extensions": [
+    "GL_EXT_debug_marker",
+    "GL_AMD_compressed_ATC_texture",
+    "GL_AMD_performance_monitor",
+    "GL_AMD_program_binary_Z400",
+    "GL_EXT_robustness",
+    "GL_EXT_texture_format_BGRA8888",
+    "GL_EXT_texture_type_2_10_10_10_REV",
+    "GL_NV_fence",
+    "GL_OES_compressed_ETC1_RGB8_texture",
+    "GL_OES_depth_texture",
+    "GL_OES_depth24",
+    "GL_OES_EGL_image",
+    "GL_OES_EGL_image_external",
+    "GL_OES_element_index_uint",
+    "GL_OES_fbo_render_mipmap",
+    "GL_OES_fragment_precision_high",
+    "GL_OES_get_program_binary",
+    "GL_OES_packed_depth_stencil",
+    "GL_OES_rgb8_rgba8",
+    "GL_OES_standard_derivatives",
+    "GL_OES_texture_3D",
+    "GL_OES_texture_float",
+    "GL_OES_texture_half_float",
+    "GL_OES_texture_half_float_linear",
+    "GL_OES_texture_npot",
+    "GL_OES_vertex_half_float",
+    "GL_OES_vertex_type_10_10_10_2",
+    "GL_OES_vertex_array_object",
+    "GL_QCOM_alpha_test",
+    "GL_QCOM_binning_control",
+    "GL_QCOM_driver_control",
+    "GL_QCOM_perfmon_global_mode",
+    "GL_QCOM_extended_get",
+    "GL_QCOM_extended_get2",
+    "GL_QCOM_tiled_rendering",
+    "GL_QCOM_writeonly_rendering",
+    "GL_AMD_compressed_3DC_texture",
+    "GL_EXT_texture_filter_anisotropic",
+    "GL_EXT_debug_label",
+    "GL_EXT_discard_framebuffer",
+    "GL_OES_depth_texture_cube_map",
+    "GL_EXT_sRGB",
+    "GL_EXT_multisampled_render_to_texture",
+    "GL_EXT_sRGB_write_control",
+    "GL_EXT_texture_sRGB_decode"
+  ],
+  "eglextensions": [
+    "EGL_KHR_image",
+    "EGL_KHR_image_base",
+    "EGL_KHR_gl_texture_2D_image",
+    "EGL_KHR_gl_texture_cubemap_image",
+    "EGL_KHR_gl_renderbuffer_image",
+    "EGL_KHR_fence_sync",
+    "EGL_ANDROID_image_native_buffer",
+    "EGL_KHR_lock_surface",
+    "EGL_KHR_create_context",
+    "EGL_EXT_create_context_robustness",
+    "EGL_KHR_wait_sync",
+    "EGL_KHR_get_all_proc_addresses",
+    "EGL_ANDROID_presentation_time",
+    "EGL_ANDROID_recordable"
+  ],
+  "compressedformats": [
+    "GL_3DC_X_AMD",
+    "GL_3DC_XY_AMD",
+    "GL_ATC_RGB_AMD",
+    "GL_ATC_RGBA_EXPLICIT_ALPHA_AMD",
+    "GL_ATC_RGBA_INTERPOLATED_ALPHA_AMD",
+    "GL_ETC1_RGB8_OES",
+    "GL_PALETTE4_RGB8_OES",
+    "GL_PALETTE4_RGBA8_OES",
+    "GL_PALETTE4_R5_G6_B5_OES",
+    "GL_PALETTE4_RGBA4_OES",
+    "GL_PALETTE4_RGB5_A1_OES",
+    "GL_PALETTE8_RGB8_OES",
+    "GL_PALETTE8_RGBA8_OES",
+    "GL_PALETTE8_R5_G6_B5_OES",
+    "GL_PALETTE8_RGBA4_OES",
+    "GL_PALETTE8_RGB5_A1_OES"
+  ],
+  "shaderformats": [],
+  "programformats": [
+    "Z400_BINARY_AMD"
+  ],
+  "features": [
+    "android.hardware.bluetooth",
+    "android.hardware.camera",
+    "android.hardware.camera.autofocus",
+    "android.hardware.camera.flash",
+    "android.hardware.camera.front",
+    "android.hardware.faketouch",
+    "android.hardware.location",
+    "android.hardware.location.gps",
+    "android.hardware.location.network",
+    "android.hardware.microphone",
+    "android.hardware.nfc",
+    "android.hardware.screen.landscape",
+    "android.hardware.screen.portrait",
+    "android.hardware.sensor.accelerometer",
+    "android.hardware.sensor.compass",
+    "android.hardware.sensor.light",
+    "android.hardware.sensor.proximity",
+    "android.hardware.telephony",
+    "android.hardware.touchscreen",
+    "android.hardware.touchscreen.multitouch",
+    "android.hardware.touchscreen.multitouch.distinct",
+    "android.hardware.touchscreen.multitouch.jazzhand",
+    "android.hardware.usb.accessory",
+    "android.hardware.wifi",
+    "android.software.live_wallpaper",
+    "android.software.sip",
+    "android.software.sip.voip",
+    "android.hardware.camera.any",
+    "android.software.app_widgets",
+    "android.software.home_screen",
+    "android.software.input_methods",
+    "android.hardware.bluetooth_le",
+    "android.hardware.sensor.barometer",
+    "android.hardware.sensor.gyroscope",
+    "android.hardware.usb.host",
+    "android.hardware.wifi.direct",
+    "com.sec.android.mdm",
+    "com.sec.feature.minimode",
+    "com.sec.feature.multiwindow",
+    "com.sec.feature.multiwindow.multiwindowlaunch",
+    "com.sec.feature.multiwindow.phone",
+    "android.hardware.nfc.hce",
+    "android.software.device_admin",
+    "com.sec.feature.gearmanager",
+    "com.nxp.mifare",
+    "android.hardware.telephony.cdma",
+    "samsung.software.smartview",
+    "samsung.software.smartview.trustzone",
+    "com.vmware.mvp",
+    "com.verizon.hardware.telephony.ehrpd",
+    "com.verizon.hardware.telephony.lte",
+    "com.vzw.hardware.ehrpd",
+    "com.vzw.hardware.lte",
+    "com.sec.feature.multiwindow.commonui",
+    "com.sec.feature.multiwindow.multiinstance",
+    "samsung.software.smartview.phone"
+  ],
+  "sensors": {
+    "MPL rotation vector": {
+      "maxRange": 10240,
+      "resolution": 1
+    },
+    "MPL linear accel": {
+      "maxRange": 10240,
+      "resolution": 1
+    },
+    "MPL gravity": {
+      "maxRange": 10240,
+      "resolution": 1
+    },
+    "MPL Gyro": {
+      "maxRange": 10240,
+      "resolution": 1
+    },
+    "MPL accel": {
+      "maxRange": 10240,
+      "resolution": 1
+    },
+    "MPL magnetic field": {
+      "maxRange": 10240,
+      "resolution": 1
+    },
+    "MPL raw magnetic field": {
+      "maxRange": 10240,
+      "resolution": 1
+    },
+    "MPL Orientation (android deprecated format)": {
+      "maxRange": 360,
+      "resolution": 1
+    },
+    "CM36651 Light Sensor": {
+      "maxRange": 65000,
+      "resolution": 1
+    },
+    "CM36651 Proximity Sensor": {
+      "maxRange": 8,
+      "resolution": 8
+    },
+    "BMP180 Pressure Sensor": {
+      "maxRange": 1100,
+      "resolution": "0.01"
+    },
+    "Screen Orientation Sensor": {
+      "maxRange": 255,
+      "resolution": 0
+    },
+    "Orientation Sensor": {
+      "maxRange": 360,
+      "resolution": "0.00390625"
+    },
+    "Gravity Sensor": {
+      "maxRange": "19.6133",
+      "resolution": 1
+    },
+    "Linear Acceleration Sensor": {
+      "maxRange": "19.6133",
+      "resolution": 1
+    },
+    "Game Rotation Vector Sensor": {
+      "maxRange": 1,
+      "resolution": "5.96046E-8"
+    },
+    "Uncalibrated Gyroscope Sensor": {
+      "maxRange": 10240,
+      "resolution": 1
+    }
+  }
+}

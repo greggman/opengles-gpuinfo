@@ -1,0 +1,158 @@
+{
+  "Device": {
+    "Device": "SM-G7106",
+    "Android version": "4.4.2",
+    "Screen width": 1280,
+    "Screen height": 720,
+    "CPU cores": 1,
+    "CPU speed (MHz)": 2000,
+    "CPU architecture": "i686",
+    "Submitted at": "2018-04-09 03:46:25",
+    "Submitted by": ""
+  },
+  "OpenGL ES renderer": {
+    "GL_VENDOR": "Qualcomm",
+    "GL_RENDERER": "Adreno (TM) 510",
+    "GL_VERSION": "OpenGL ES 2.0 V@53.0",
+    "GL_SHADING_LANGUAGE_VERSION": "OpenGL ES GLSL ES 1.0.17"
+  },
+  "EGL implementation": {
+    "EGL_VENDOR": "Android",
+    "EGL_VERSION": "1.4 Android META-EGL",
+    "Client APIs": "OpenGL_ES"
+  },
+  "OpenGL ES 2.0 capabilities": {
+    "GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS": 16,
+    "GL_MAX_CUBE_MAP_TEXTURE_SIZE": 16384,
+    "GL_MAX_FRAGMENT_UNIFORM_VECTORS": 1024,
+    "GL_MAX_RENDERBUFFER_SIZE": 16384,
+    "GL_MAX_TEXTURE_IMAGE_UNITS": 32,
+    "GL_MAX_TEXTURE_SIZE": 16384,
+    "GL_MAX_VARYING_VECTORS": 31,
+    "GL_MAX_VERTEX_ATTRIBS": 16,
+    "GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS": 32,
+    "GL_MAX_VERTEX_UNIFORM_VECTORS": 1024,
+    "GL_MAX_VIEWPORT_DIMS": 16384,
+    "GL_NUM_COMPRESSED_TEXTURE_FORMATS": 11,
+    "GL_NUM_SHADER_BINARY_FORMATS": 0,
+    "GL_NUM_PROGRAM_BINARY_FORMATS": 1
+  },
+  "OpenGL ES 3.0 capabilities": {
+    "not supported": ""
+  },
+  "extensions": [
+    "GL_EXT_debug_marker",
+    "GL_EXT_texture_format_BGRA8888",
+    "GL_OES_compressed_ETC1_RGB8_texture",
+    "GL_OES_depth_texture",
+    "GL_OES_depth24",
+    "GL_OES_EGL_image",
+    "GL_OES_EGL_image_external",
+    "GL_OES_element_index_uint",
+    "GL_OES_packed_depth_stencil",
+    "GL_OES_texture_float",
+    "GL_OES_texture_half_float",
+    "GL_OES_texture_half_float_linear",
+    "GL_OES_vertex_half_float",
+    "GL_OES_depth32",
+    "GL_OES_texture_float_linear",
+    "GL_OES_compressed_paletted_texture",
+    "GL_EXT_color_buffer_half_float",
+    "GL_IMG_texture_compression_pvrtc"
+  ],
+  "eglextensions": [
+    "EGL_KHR_image_base",
+    "EGL_KHR_get_all_proc_addresses",
+    "EGL_ANDROID_presentation_time"
+  ],
+  "compressedformats": [
+    "GL_ETC1_RGB8_OES",
+    "GL_PALETTE4_RGB8_OES",
+    "GL_PALETTE4_RGBA8_OES",
+    "GL_PALETTE4_R5_G6_B5_OES",
+    "GL_PALETTE4_RGBA4_OES",
+    "GL_PALETTE4_RGB5_A1_OES",
+    "GL_PALETTE8_RGB8_OES",
+    "GL_PALETTE8_RGBA8_OES",
+    "GL_PALETTE8_R5_G6_B5_OES",
+    "GL_PALETTE8_RGBA4_OES",
+    "GL_PALETTE8_RGB5_A1_OES"
+  ],
+  "shaderformats": [],
+  "programformats": [
+    "0x8e21"
+  ],
+  "features": [
+    "android.hardware.bluetooth",
+    "android.hardware.camera",
+    "android.hardware.camera.autofocus",
+    "android.hardware.camera.flash",
+    "android.hardware.camera.front",
+    "android.hardware.faketouch",
+    "android.hardware.location",
+    "android.hardware.location.gps",
+    "android.hardware.location.network",
+    "android.hardware.microphone",
+    "android.hardware.nfc",
+    "android.hardware.screen.landscape",
+    "android.hardware.screen.portrait",
+    "android.hardware.sensor.accelerometer",
+    "android.hardware.sensor.compass",
+    "android.hardware.sensor.light",
+    "android.hardware.sensor.proximity",
+    "android.hardware.telephony",
+    "android.hardware.telephony.gsm",
+    "android.hardware.touchscreen",
+    "android.hardware.touchscreen.multitouch",
+    "android.hardware.touchscreen.multitouch.distinct",
+    "android.hardware.touchscreen.multitouch.jazzhand",
+    "android.hardware.usb.accessory",
+    "android.hardware.wifi",
+    "android.software.live_wallpaper",
+    "android.software.sip",
+    "android.software.sip.voip",
+    "android.hardware.camera.any",
+    "android.software.app_widgets",
+    "android.software.home_screen",
+    "android.software.input_methods",
+    "android.hardware.bluetooth_le",
+    "android.hardware.sensor.barometer",
+    "android.hardware.sensor.gyroscope",
+    "android.hardware.usb.host",
+    "android.hardware.nfc.hce",
+    "android.software.device_admin",
+    "android.hardware.sensor.stepcounter",
+    "android.hardware.sensor.stepdetector",
+    "android.hardware.telephony.cdma"
+  ],
+  "sensors": {
+    "Invensense Accelerometer": {
+      "maxRange": "19.6133",
+      "resolution": "0.00957681"
+    },
+    "Orientation Sensor": {
+      "maxRange": 360,
+      "resolution": "0.00390625"
+    },
+    "Gyroscope": {
+      "maxRange": "19.6133",
+      "resolution": "0.00957681"
+    },
+    "AK8963 Magnetometer": {
+      "maxRange": 2000,
+      "resolution": 1
+    },
+    "Gravity Sensor": {
+      "maxRange": "19.6133",
+      "resolution": "0.00957681"
+    },
+    "Rotation Vector Sensor": {
+      "maxRange": 1,
+      "resolution": "5.96046E-8"
+    },
+    "Linear Acceleration Sensor": {
+      "maxRange": "19.6133",
+      "resolution": "0.00957681"
+    }
+  }
+}
