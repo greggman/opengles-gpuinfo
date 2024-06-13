@@ -4,7 +4,7 @@ const data = JSON.parse(fs.readFileSync('alldata.json', {encoding: 'utf-8'}));
 
 const gles31Plus = data.filter(d => {
   const version = parseFloat(d.GL_VERSION.substring(10));
-  return version === 3.1; //>= 3.1;
+  return version >= 3.1;
 });
 
 function safeStr(v) {
@@ -19,7 +19,30 @@ function safePad(v, len) {
   return safeStr(v).padEnd(len);
 }
 
-``
+function pad(format, len, v) {
+  switch (format) {
+    case '>':  // move to right
+    case 'r':  // pad right
+    case 's':  // pad start
+      return safeStr(v).padStart(len);
+    default:
+      return safeStr(v).padEnd(len);
+  }
+}
+
+function padColumns(rows, formats = '') {
+  const columnLengths = [];
+
+  // get size of each column
+  for (const row of rows) {
+    row.forEach((v, i) => {
+      columnLengths[i] = Math.max(columnLengths[i] || 0, safeStr(v).length);
+    });
+  }
+
+  return rows.map(row => row.map((v, i) => pad(formats[i], columnLengths[i], v)).join('')).join('\n');
+}
+
 function queryLimit(records, limit) {
   let badCount = 0;
   const buckets = new Map();
@@ -46,7 +69,41 @@ function queryLimit(records, limit) {
   });
   const numUndefined = buckets.get(undefined) || 0;
   const numNotUndefined = records.length - numUndefined;
-  console.log(results.map(([k, v]) => `${safePad(k,lengths[0])}: ${safePad(v ,lengths[1])}  ${(v / records.length * 100).toFixed(0).padStart(2)}%  ${k === undefined ? '' : `(${(v / numNotUndefined * 100).toFixed(0).padStart(2)}%)`}`).join('\n'));
+  const numNotZero = numNotUndefined - (buckets.get(0) || 0);
+
+
+  const rows = [
+    ['',          '', '',    '', ' %of ', '  ', '     not      ', '  not   '],
+    ['limit    ', '', 'cnt', '', 'total', '  ', '  undefined   ', '  zero  '],
+    ['---------', '', '---', '', '-----', '--', ' ------------ ', '--------'],
+    ...results.map(([k, v]) => [
+       k,
+       ': ',
+       v,
+       '  ',
+       (v / records.length * 100).toFixed(1),
+       '% ',
+       k === undefined ? '' : `${(v / numNotUndefined * 100).toFixed(1)}% `,
+       k === undefined || k === 0 ? '' : `${(v / numNotZero * 100).toFixed(1)}% `,
+    ]),
+  ];
+  console.log(padColumns(rows, '..>>>>>>'));
+
+
+
+
+
+  
+  //console.log(results.map(([k, v]) => [
+  //  safePad(k,lengths[0]),
+  //  ': ',
+  //  safePad(v ,lengths[1]),
+  //  '  ',
+  //  (v / records.length * 100).toFixed(0).padStart(2),
+  //  '%',
+  //  k === undefined ? '' : `(${(v / numNotUndefined * 100).toFixed(0).padStart(2)}%)`,
+  //  k === undefined || k === 0 ? '' : `(${(v / numNotZero * 100).toFixed(0).padStart(2)}%)` 
+  //].join('')).join('\n'));
   console.log('\n')
 }
 
