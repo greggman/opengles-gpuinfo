@@ -37,11 +37,20 @@ node flatten-json.js`
 This reads all the json files and writes both `alldata.json` (an array with the data flattened to key/values)
 and `alldata.csv` with column headings and the data normalized.
 
-Note: I loaded `alldata.csv` into Google Sheets. It took 20-60mins to import it?
-
-So, `query.js` can be modified as an example of querying yourself.
+`query.js` can be modified as an example of querying yourself.
 
 ```
 node query.js
 ```
+
+## License
+
+All the data is from https://opengles.gpuinfo.org/
+
+The license there is [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)
+so the data in the json, csv, and html files is CC-BY-4.0
+
+The code in this repo license MIT
+
+
 
