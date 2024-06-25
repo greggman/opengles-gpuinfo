@@ -87,23 +87,7 @@ function queryLimit(records, limit) {
        k === undefined || k === 0 ? '' : `${(v / numNotZero * 100).toFixed(1)}% `,
     ]),
   ];
-  console.log(padColumns(rows, '..>>>>>>'));
-
-
-
-
-
-  
-  //console.log(results.map(([k, v]) => [
-  //  safePad(k,lengths[0]),
-  //  ': ',
-  //  safePad(v ,lengths[1]),
-  //  '  ',
-  //  (v / records.length * 100).toFixed(0).padStart(2),
-  //  '%',
-  //  k === undefined ? '' : `(${(v / numNotUndefined * 100).toFixed(0).padStart(2)}%)`,
-  //  k === undefined || k === 0 ? '' : `(${(v / numNotZero * 100).toFixed(0).padStart(2)}%)` 
-  //].join('')).join('\n'));
+  console.log(padColumns(rows, '<<>>>>>>'));
   console.log('\n')
 }
 
@@ -114,3 +98,46 @@ console.log('\n');
 queryLimit(gles31Plus, 'GL_MAX_COMPUTE_SHADER_STORAGE_BLOCKS');
 queryLimit(gles31Plus, 'GL_MAX_FRAGMENT_SHADER_STORAGE_BLOCKS');
 queryLimit(gles31Plus, 'GL_MAX_VERTEX_SHADER_STORAGE_BLOCKS');
+queryLimit(gles31Plus, 'GL_MAX_FRAGMENT_IMAGE_UNIFORMS');
+queryLimit(gles31Plus, 'GL_MAX_VERTEX_IMAGE_UNIFORMS');
+queryLimit(gles31Plus, 'GL_MAX_TEXTURE_SIZE');
+queryLimit(gles31Plus, 'GL_MAX_3D_TEXTURE_SIZE');
+
+
+function queryCombineLimit(records, combineLimit, limits) {
+  console.log(combineLimit, 'vs')
+  console.log(limits.map(v => `  ${v}`).join('\n'));
+  let numOk = 0;
+  let numBad = 0;
+  const bad = [];
+  const buckets = new Map();
+  for (const entry of records) {
+    const maxCombined = entry[combineLimit];
+    const sumLimits = limits.reduce((sum, limit) => sum + entry[limit],0);
+    if (sumLimits > maxCombined) {
+      bad.push(entry);
+      const id = `${limits.map(limit => entry[limit]).join(',')},${entry[combineLimit]}`;
+      buckets.set(id, (buckets.get(id) || 0) + 1);
+    }
+  }
+  console.log('total entries:', records.length);
+  console.log('num entries where sum of', limits.length, '> combined:', bad.length);
+  const rows = [
+    [...limits.map(v => `${v.split('_')[2]} `), `${combineLimit.split('_')[2]} `, 'count'],
+    ...[...buckets.entries()].map(([k, v]) => [...k.split(','), v]),
+  ];
+  console.log(padColumns(rows, ''));
+  console.log('\n')
+}
+
+queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_SHADER_STORAGE_BLOCKS', [
+  'GL_MAX_COMPUTE_SHADER_STORAGE_BLOCKS',
+  'GL_MAX_FRAGMENT_SHADER_STORAGE_BLOCKS',
+  'GL_MAX_VERTEX_SHADER_STORAGE_BLOCKS',
+]);
+
+queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_IMAGE_UNIFORMS', [
+  'GL_MAX_COMPUTE_IMAGE_UNIFORMS',
+  'GL_MAX_FRAGMENT_IMAGE_UNIFORMS',
+  'GL_MAX_VERTEX_IMAGE_UNIFORMS',
+]);
