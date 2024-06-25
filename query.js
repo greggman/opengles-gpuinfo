@@ -105,29 +105,48 @@ queryLimit(gles31Plus, 'GL_MAX_3D_TEXTURE_SIZE');
 
 
 function queryCombineLimit(records, combineLimit, limits) {
+  console.log(''.padEnd(60, '='));
   console.log(combineLimit, 'vs')
   console.log(limits.map(v => `  ${v}`).join('\n'));
   let numOk = 0;
   let numBad = 0;
   const bad = [];
-  const buckets = new Map();
+  const good = [];
+  const badBuckets = new Map();
+  const goodBuckets = new Map();
   for (const entry of records) {
     const maxCombined = entry[combineLimit];
+    if (maxCombined === undefined) {
+      continue;
+    }
     const sumLimits = limits.reduce((sum, limit) => sum + entry[limit],0);
+    const id = `${limits.map(limit => entry[limit]).join(',')},${entry[combineLimit]}`;
     if (sumLimits > maxCombined) {
       bad.push(entry);
-      const id = `${limits.map(limit => entry[limit]).join(',')},${entry[combineLimit]}`;
-      buckets.set(id, (buckets.get(id) || 0) + 1);
+      badBuckets.set(id, (badBuckets.get(id) || 0) + 1);
+    } else {
+      good.push(entry);
+      goodBuckets.set(id, (goodBuckets.get(id) || 0) + 1);
     }
   }
-  console.log('total entries:', records.length);
+  console.log('total valid entries:', good.length + bad.length);
   console.log('num entries where sum of', limits.length, '> combined:', bad.length);
-  const rows = [
-    [...limits.map(v => `${v.split('_')[2]} `), `${combineLimit.split('_')[2]} `, 'count'],
-    ...[...buckets.entries()].map(([k, v]) => [...k.split(','), v]),
-  ];
-  console.log(padColumns(rows, ''));
   console.log('\n')
+  
+  const headings = [...limits.map(v => `${v.split('_')[2]} `), `${combineLimit.split('_')[2]} `, 'count'];
+  const showCombos = (title, buckets) => {
+    const rows = [
+      headings,
+      headings.map(v => ' '.padStart(v.length, '-')),
+      ...[...buckets.entries()].map(([k, v]) => [...k.split(','), v]).sort((a, b) => b[b.length - 1] - a[a.length - 1]),
+    ];
+    console.log(title);
+    console.log(padColumns(rows, ''));
+    console.log('\n')
+  };
+
+  showCombos('Combos where COMBINED < sum', badBuckets);
+  showCombos('Combos where COMBINED >= sum', goodBuckets);
 }
 
 queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_SHADER_STORAGE_BLOCKS', [
@@ -140,4 +159,22 @@ queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_IMAGE_UNIFORMS', [
   'GL_MAX_COMPUTE_IMAGE_UNIFORMS',
   'GL_MAX_FRAGMENT_IMAGE_UNIFORMS',
   'GL_MAX_VERTEX_IMAGE_UNIFORMS',
+]);
+
+queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS', [
+  'GL_MAX_COMPUTE_TEXTURE_IMAGE_UNITS',
+  'GL_MAX_TEXTURE_IMAGE_UNITS',
+  'GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS',
+]);
+
+queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_UNIFORM_BLOCKS', [
+  'GL_MAX_COMPUTE_UNIFORM_BLOCKS',
+  'GL_MAX_FRAGMENT_UNIFORM_BLOCKS	',
+  'GL_MAX_VERTEX_UNIFORM_BLOCKS',
+]);
+
+queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_SHADER_OUTPUT_RESOURCES', [
+  'GL_MAX_COMBINED_SHADER_STORAGE_BLOCKS',
+  'GL_MAX_COMBINED_IMAGE_UNIFORMS	',
+  'GL_MAX_COLOR_ATTACHMENTS',
 ]);
