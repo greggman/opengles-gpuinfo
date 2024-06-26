@@ -44,47 +44,33 @@ function padColumns(rows, formats = '') {
 }
 
 function queryLimit(records, limit) {
-  let badCount = 0;
+  const validRecords = records.filter(r => r[limit] !== undefined)
   const buckets = new Map();
-  for (const entry of records) {
+  for (const entry of validRecords) {
     const v = entry[limit];
-
-    if (v === undefined) {
-      //if (badCount < 3) {
-        badCount++;
-      //  console.log(entry.reportId, entry.GL_RENDERER);
-      //}
-    }
-
     buckets.set(v, (buckets.get(v) || 0) + 1);
   }
 
   console.log(limit);
   const lengths = [0, 0];
   const results = [...buckets.entries()];
-  results.sort((a, b) => Math.sign(a[0] - b[0]));
+  results.sort((a, b) => Math.sign(b[b.length - 1] - a[a.length - 1]));
   results.forEach(([k, v]) => {
     lengths[0] = Math.max(safeLen(k), lengths[0]);
     lengths[1] = Math.max(safeLen(v), lengths[1]);
   });
-  const numUndefined = buckets.get(undefined) || 0;
-  const numNotUndefined = records.length - numUndefined;
-  const numNotZero = numNotUndefined - (buckets.get(0) || 0);
-
+  const num = validRecords.length;
 
   const rows = [
-    ['',          '', '',    '', ' %of ', '  ', '     not      ', '  not   '],
-    ['limit    ', '', 'cnt', '', 'total', '  ', '  undefined   ', '  zero  '],
-    ['---------', '', '---', '', '-----', '--', ' ------------ ', '--------'],
+    ['',          '', '',    '', ' %of '],
+    ['limit    ', '', 'cnt', '', 'total'],
+    ['---------', '', '---', '', '-----'],
     ...results.map(([k, v]) => [
        k,
        ': ',
        v,
        '  ',
-       (v / records.length * 100).toFixed(1),
-       '% ',
-       k === undefined ? '' : `${(v / numNotUndefined * 100).toFixed(1)}% `,
-       k === undefined || k === 0 ? '' : `${(v / numNotZero * 100).toFixed(1)}% `,
+       `${(v / validRecords.length * 100).toFixed(1)}%`,
     ]),
   ];
   console.log(padColumns(rows, '<<>>>>>>'));
@@ -103,11 +89,15 @@ queryLimit(gles31Plus, 'GL_MAX_VERTEX_IMAGE_UNIFORMS');
 queryLimit(gles31Plus, 'GL_MAX_TEXTURE_SIZE');
 queryLimit(gles31Plus, 'GL_MAX_3D_TEXTURE_SIZE');
 
+function isNumeric(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}
 
-function queryCombineLimit(records, combineLimit, limits) {
+function queryCombineLimit(records, combineLimit, computeLimit, limits) {
   console.log(''.padEnd(60, '='));
   console.log(combineLimit, 'vs')
-  console.log(limits.map(v => `  ${v}`).join('\n'));
+  console.log(`  ${computeLimit}\n${limits.map(v => `  ${v}`).join('\n')}`);
+  const allLimits = [computeLimit, ...limits];
   let numOk = 0;
   let numBad = 0;
   const bad = [];
@@ -116,11 +106,11 @@ function queryCombineLimit(records, combineLimit, limits) {
   const goodBuckets = new Map();
   for (const entry of records) {
     const maxCombined = entry[combineLimit];
-    if (maxCombined === undefined) {
+    if (maxCombined === undefined || !allLimits.reduce((all, limit) => all && isNumeric(entry[limit]), true)) {
       continue;
     }
-    const sumLimits = limits.reduce((sum, limit) => sum + entry[limit],0);
-    const id = `${limits.map(limit => entry[limit]).join(',')},${entry[combineLimit]}`;
+    const sumLimits = limits.reduce((sum, limit) => sum + entry[limit], 0);
+    const id = `${allLimits.map(limit => entry[limit]).join(',')},${entry[combineLimit]}`;
     if (sumLimits > maxCombined) {
       bad.push(entry);
       badBuckets.set(id, (badBuckets.get(id) || 0) + 1);
@@ -130,10 +120,10 @@ function queryCombineLimit(records, combineLimit, limits) {
     }
   }
   console.log('total valid entries:', good.length + bad.length);
-  console.log('num entries where sum of', limits.length, '> combined:', bad.length);
+  console.log('num entries where FRAGMENT + VERTEX > COMBINED:', bad.length);
   console.log('\n')
   
-  const headings = [...limits.map(v => `${v.split('_')[2]} `), `${combineLimit.split('_')[2]} `, 'count'];
+  const headings = [...allLimits.map(v => `${v.split('_')[2]} `), `${combineLimit.split('_')[2]} `, 'count'];
   const showCombos = (title, buckets) => {
     const rows = [
       headings,
@@ -145,36 +135,32 @@ function queryCombineLimit(records, combineLimit, limits) {
     console.log('\n')
   };
 
-  showCombos('Combos where COMBINED < sum', badBuckets);
-  showCombos('Combos where COMBINED >= sum', goodBuckets);
+  showCombos('Combos where COMBINED < FRAGMENT + VERTEX', badBuckets);
+  showCombos('Combos where COMBINED >= FRAGMENT + VERTEX', goodBuckets);
 }
 
-queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_SHADER_STORAGE_BLOCKS', [
-  'GL_MAX_COMPUTE_SHADER_STORAGE_BLOCKS',
+queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_SHADER_STORAGE_BLOCKS', 'GL_MAX_COMPUTE_SHADER_STORAGE_BLOCKS', [
   'GL_MAX_FRAGMENT_SHADER_STORAGE_BLOCKS',
   'GL_MAX_VERTEX_SHADER_STORAGE_BLOCKS',
 ]);
 
-queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_IMAGE_UNIFORMS', [
-  'GL_MAX_COMPUTE_IMAGE_UNIFORMS',
+queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_IMAGE_UNIFORMS', 'GL_MAX_COMPUTE_IMAGE_UNIFORMS', [
   'GL_MAX_FRAGMENT_IMAGE_UNIFORMS',
   'GL_MAX_VERTEX_IMAGE_UNIFORMS',
 ]);
 
-queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS', [
-  'GL_MAX_COMPUTE_TEXTURE_IMAGE_UNITS',
+queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS', 'GL_MAX_COMPUTE_TEXTURE_IMAGE_UNITS', [
   'GL_MAX_TEXTURE_IMAGE_UNITS',
   'GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS',
 ]);
 
-queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_UNIFORM_BLOCKS', [
-  'GL_MAX_COMPUTE_UNIFORM_BLOCKS',
-  'GL_MAX_FRAGMENT_UNIFORM_BLOCKS	',
-  'GL_MAX_VERTEX_UNIFORM_BLOCKS',
-]);
+// queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_UNIFORM_BLOCKS', 'GL_MAX_COMPUTE_UNIFORM_BLOCKS', [
+//   'GL_MAX_FRAGMENT_UNIFORM_BLOCKS	',
+//   'GL_MAX_VERTEX_UNIFORM_BLOCKS',
+// ]);
 
-queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_SHADER_OUTPUT_RESOURCES', [
-  'GL_MAX_COMBINED_SHADER_STORAGE_BLOCKS',
-  'GL_MAX_COMBINED_IMAGE_UNIFORMS	',
-  'GL_MAX_COLOR_ATTACHMENTS',
-]);
+//queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_SHADER_OUTPUT_RESOURCES', [
+//  'GL_MAX_COMBINED_SHADER_STORAGE_BLOCKS',
+//  'GL_MAX_COMBINED_IMAGE_UNIFORMS	',
+//  'GL_MAX_COLOR_ATTACHMENTS',
+//]);
