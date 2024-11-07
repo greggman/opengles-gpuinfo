@@ -159,9 +159,9 @@ function queryCombineLimit(records, combineLimit, limits) {
   };
 
   const showComboEntries = (buckets) => {
-    const labels = [...limits, combineLimit];
+    const labels = [...limits, 'sum-of-limits', combineLimit];
     for (const [k, {entries}] of buckets.entries()) {
-      console.log(k);
+      console.log('---');
       console.log(k.split(',').map((v, i) => `${labels[i]}=${v}`).join(','));
       const devicesByGPU = new Map();
       for (const e of entries) {
