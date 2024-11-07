@@ -131,7 +131,7 @@ function queryCombineLimit(records, combineLimit, limits) {
   console.log('\n')
   
   // split the names by _ so headingSplit is an array of arrays of words
-  const headingsSplit = [...limits, 'prefix_total_of_limits', combineLimit, 'prefix_count_of_opengles.gpuinfo.org_entries'].map(v => v.split('_').slice(1));
+  const headingsSplit = [...limits, 'prefix_total_of_limits_<---', combineLimit, 'prefix_count_of_opengles.gpuinfo.org_entries'].map(v => v.split('_').slice(1));
   // get the number of words in the largest heading
   const numWordsInLargestHeading = headingsSplit.reduce((max, arr) => Math.max(max, arr.length), 0);
   // Make heading rows, each row is the corresponding word from that heading
