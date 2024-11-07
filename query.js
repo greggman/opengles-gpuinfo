@@ -88,6 +88,7 @@ queryLimit(gles31Plus, 'GL_MAX_FRAGMENT_IMAGE_UNIFORMS');
 queryLimit(gles31Plus, 'GL_MAX_VERTEX_IMAGE_UNIFORMS');
 queryLimit(gles31Plus, 'GL_MAX_TEXTURE_SIZE');
 queryLimit(gles31Plus, 'GL_MAX_3D_TEXTURE_SIZE');
+queryLimit(gles31Plus, 'GL_MAX_TEXTURE_LOD_BIAS');
 
 function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
@@ -113,46 +114,91 @@ function queryCombineLimit(records, combineLimit, computeLimit, limits) {
     const id = `${allLimits.map(limit => entry[limit]).join(',')},${entry[combineLimit]}`;
     if (sumLimits > maxCombined) {
       bad.push(entry);
-      badBuckets.set(id, (badBuckets.get(id) || 0) + 1);
+      const bucket = badBuckets.get(id) ?? {sum: 0, entries: []};
+      bucket.sum++;
+      bucket.entries.push(entry);
+      badBuckets.set(id, bucket);
     } else {
       good.push(entry);
-      goodBuckets.set(id, (goodBuckets.get(id) || 0) + 1);
+      const bucket = goodBuckets.get(id)  ?? {sum: 0, entries: []};
+      bucket.sum++;
+      bucket.entries.push(entry);
+      goodBuckets.set(id, bucket);
     }
   }
   console.log('total valid entries:', good.length + bad.length);
-  console.log('num entries where FRAGMENT + VERTEX > COMBINED:', bad.length);
+  console.log('num entries where', limits.join('+'), '> COMBINED:', bad.length);
   console.log('\n')
   
-  const headings = [...allLimits.map(v => `${v.split('_')[2]} `), `${combineLimit.split('_')[2]} `, 'count'];
+  const headingsSplit = [...allLimits, combineLimit].map(v => v.split('_').slice(1));
+  headingsSplit.push(['count']);
+  const maxPieces = headingsSplit.reduce((max, arr) => Math.max(max, arr.length), 0);
+  const headings = [];
+  for (let p = 0; p < maxPieces; ++p) {
+    headings.push(headingsSplit.map(pieces => `${pieces[p] ?? ''} `));
+  }
+
   const showCombos = (title, buckets) => {
     const rows = [
-      headings,
-      headings.map(v => ' '.padStart(v.length, '-')),
-      ...[...buckets.entries()].map(([k, v]) => [...k.split(','), v]).sort((a, b) => b[b.length - 1] - a[a.length - 1]),
+      ...headings,
+      headingsSplit.map(pieces => ' '.padStart(pieces.reduce((max, s) => Math.max(max, (s ?? '').length), 0), '-')),
+      ...[...buckets.entries()].map(([k, {sum}]) => {
+        const cols = [...k.split(','), sum];
+        return cols;
+      }).sort((a, b) => b[b.length - 1] - a[a.length - 1]),
     ];
     console.log(title);
     console.log(padColumns(rows, ''));
     console.log('\n')
   };
 
-  showCombos('Combos where COMBINED < FRAGMENT + VERTEX', badBuckets);
-  showCombos('Combos where COMBINED >= FRAGMENT + VERTEX', goodBuckets);
+let o;
+  const showComboEntries = (buckets) => {
+    const labels = [...allLimits, combineLimit];
+    for (const [k, {entries}] of buckets.entries()) {
+      console.log(k);
+      console.log(k.split(',').map((v, i) => `${labels[i]}=${v}`).join(','));
+      const devicesByGPU = new Map();
+      for (const e of entries) {
+        const devices = devicesByGPU.get(e.GL_RENDERER) ?? new Set();
+        devices.add(e.Device);
+        devicesByGPU.set(e.GL_RENDERER, devices);
+      }
+      for (const [gpu, devices] of devicesByGPU.entries()) {
+        console.log('   ', gpu, ':', [...devices.values()].join(','));
+      }
+    }
+  };
+
+  showCombos(`Combos where COMBINED < ${limits.join('+')}`, badBuckets);
+  showComboEntries(badBuckets);
+  showCombos(`Combos where COMBINED >= ${limits.join('+')}`, goodBuckets);
+  showComboEntries(goodBuckets);
 }
 
-queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_SHADER_STORAGE_BLOCKS', 'GL_MAX_COMPUTE_SHADER_STORAGE_BLOCKS', [
-  'GL_MAX_FRAGMENT_SHADER_STORAGE_BLOCKS',
+//queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_SHADER_STORAGE_BLOCKS', 'GL_MAX_COMPUTE_SHADER_STORAGE_BLOCKS', [
+//  'GL_MAX_FRAGMENT_SHADER_STORAGE_BLOCKS',
+//  'GL_MAX_VERTEX_SHADER_STORAGE_BLOCKS',
+//]);
+//
+//queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_IMAGE_UNIFORMS', 'GL_MAX_COMPUTE_IMAGE_UNIFORMS', [
+//  'GL_MAX_FRAGMENT_IMAGE_UNIFORMS',
+//  'GL_MAX_VERTEX_IMAGE_UNIFORMS',
+//]);
+//
+//queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS', 'GL_MAX_COMPUTE_TEXTURE_IMAGE_UNITS', [
+//  'GL_MAX_TEXTURE_IMAGE_UNITS',
+//  'GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS',
+//]);
+
+queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_SHADER_OUTPUT_RESOURCES', 'GL_MAX_COMPUTE_SHADER_STORAGE_BLOCKS', [
   'GL_MAX_VERTEX_SHADER_STORAGE_BLOCKS',
-]);
-
-queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_IMAGE_UNIFORMS', 'GL_MAX_COMPUTE_IMAGE_UNIFORMS', [
-  'GL_MAX_FRAGMENT_IMAGE_UNIFORMS',
   'GL_MAX_VERTEX_IMAGE_UNIFORMS',
+  'GL_MAX_FRAGMENT_SHADER_STORAGE_BLOCKS',
+  'GL_MAX_FRAGMENT_IMAGE_UNIFORMS',
+  'GL_MAX_DRAW_BUFFERS',
 ]);
 
-queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS', 'GL_MAX_COMPUTE_TEXTURE_IMAGE_UNITS', [
-  'GL_MAX_TEXTURE_IMAGE_UNITS',
-  'GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS',
-]);
 
 // queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_UNIFORM_BLOCKS', 'GL_MAX_COMPUTE_UNIFORM_BLOCKS', [
 //   'GL_MAX_FRAGMENT_UNIFORM_BLOCKS	',
@@ -164,3 +210,21 @@ queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS', 'GL_MAX_COM
 //  'GL_MAX_COMBINED_IMAGE_UNIFORMS	',
 //  'GL_MAX_COLOR_ATTACHMENTS',
 //]);
+
+/*
+Combos where COMBINED < total
+COMPUTE FRAGMENT FRAGMENT DRAW COMBINED count
+        SHADER   IMAGE    BUFFERS
+        STORAGE  UNIFORMS
+        BLOCKS
+------- -------- -------- ---- -------- ----
+8       8        8        8    8        362
+16      16       8        8    16       44
+60      60       60       8    60       4
+0       0        0        8    0        3
+64      64       32       8    72       3
+8       8        8        8    20       2
+16      16       32       8    40       1
+8192    8192     8192     8    8192     1
+0       0        0        4    0        1
+*/
