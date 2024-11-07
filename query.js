@@ -98,18 +98,19 @@ function queryCombineLimit(records, combineLimit, limits) {
   console.log(''.padEnd(60, '='));
   console.log(combineLimit, 'vs')
   console.log(`  ${limits.map(v => `  ${v}`).join('\n')}`);
-  let numOk = 0;
-  let numBad = 0;
   const bad = [];
   const good = [];
   const badBuckets = new Map();
   const goodBuckets = new Map();
   for (const entry of records) {
     const maxCombined = entry[combineLimit];
+    // skip any entry where one of the limits is missing (undefined)
     if (maxCombined === undefined || !limits.reduce((all, limit) => all && isNumeric(entry[limit]), true)) {
       continue;
     }
+    // some the limits
     const sumLimits = limits.reduce((sum, limit) => sum + entry[limit], 0);
+    // make an id in the form of "limit1,limit2,limitN,sum,combineLimit"
     const id = `${limits.map(limit => entry[limit]).join(',')},${sumLimits},${entry[combineLimit]}`;
     if (sumLimits > maxCombined) {
       bad.push(entry);
@@ -129,28 +130,34 @@ function queryCombineLimit(records, combineLimit, limits) {
   console.log('num entries where', limits.join('+\n                  '), '> COMBINED:', bad.length);
   console.log('\n')
   
+  // split the names by _ so headingSplit is an array of arrays of words
   const headingsSplit = [...limits, 'prefix_total_of_limits', combineLimit, 'prefix_count_of_opengles.gpuinfo.org_entries'].map(v => v.split('_').slice(1));
-  const maxPieces = headingsSplit.reduce((max, arr) => Math.max(max, arr.length), 0);
-  const headings = [];
-  for (let p = 0; p < maxPieces; ++p) {
-    headings.push(headingsSplit.map(pieces => `${pieces[p] ?? ''} `));
+  // get the number of words in the largest heading
+  const numWordsInLargestHeading = headingsSplit.reduce((max, arr) => Math.max(max, arr.length), 0);
+  // Make heading rows, each row is the corresponding word from that heading
+  const headingRows = [];
+  for (let p = 0; p < numWordsInLargestHeading; ++p) {
+    headingRows.push(headingsSplit.map(pieces => `${pieces[p] ?? ''} `));
   }
 
   const showCombos = (title, buckets) => {
     const rows = [
-      ...headings,
-      headingsSplit.map(pieces => ' '.padStart(pieces.reduce((max, s) => Math.max(max, (s ?? '').length), 0), '-')),
-      ...[...buckets.entries()].map(([k, {sum}]) => {
-        const cols = [...k.split(',').map(v => `${v} `), sum];
-        return cols;
-      }).sort((a, b) => b[b.length - 1] - a[a.length - 1]),
+      ...headingRows,
+      // make a ---- for each column. need to go through each heading's words and find the longest word
+      headingsSplit.map(words => ' '.padStart(words.reduce((max, s) => Math.max(max, (s ?? '').length), 0), '-')),
+      // from the buckets, split its id (id "limit0,limit1,limitN,sum,combineLimit") to turn into columns
+      ...[...buckets.entries()].map(([id, {sum}]) => {
+        const columns = [...id.split(',').map(v => `${v} `), sum];
+        return columns;
+      })
+      // sort by last column
+      .sort((a, b) => b[b.length - 1] - a[a.length - 1]),
     ];
     console.log(title);
     console.log(padColumns(rows, ''));
     console.log('\n')
   };
 
-let o;
   const showComboEntries = (buckets) => {
     const labels = [...limits, combineLimit];
     for (const [k, {entries}] of buckets.entries()) {
@@ -187,6 +194,11 @@ queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_IMAGE_UNIFORMS', [
 queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS', [
   'GL_MAX_TEXTURE_IMAGE_UNITS',
   'GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS',
+]);
+
+queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_UNIFORM_BLOCKS', [
+  'GL_MAX_VERTEX_UNIFORM_BLOCKS',
+  'GL_MAX_FRAGMENT_UNIFORM_BLOCKS',
 ]);
 
 queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_SHADER_OUTPUT_RESOURCES', [
