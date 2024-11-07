@@ -94,11 +94,10 @@ function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
-function queryCombineLimit(records, combineLimit, computeLimit, limits) {
+function queryCombineLimit(records, combineLimit, limits) {
   console.log(''.padEnd(60, '='));
   console.log(combineLimit, 'vs')
-  console.log(`  ${computeLimit}\n${limits.map(v => `  ${v}`).join('\n')}`);
-  const allLimits = [computeLimit, ...limits];
+  console.log(`  ${limits.map(v => `  ${v}`).join('\n')}`);
   let numOk = 0;
   let numBad = 0;
   const bad = [];
@@ -107,11 +106,11 @@ function queryCombineLimit(records, combineLimit, computeLimit, limits) {
   const goodBuckets = new Map();
   for (const entry of records) {
     const maxCombined = entry[combineLimit];
-    if (maxCombined === undefined || !allLimits.reduce((all, limit) => all && isNumeric(entry[limit]), true)) {
+    if (maxCombined === undefined || !limits.reduce((all, limit) => all && isNumeric(entry[limit]), true)) {
       continue;
     }
     const sumLimits = limits.reduce((sum, limit) => sum + entry[limit], 0);
-    const id = `${allLimits.map(limit => entry[limit]).join(',')},${entry[combineLimit]}`;
+    const id = `${limits.map(limit => entry[limit]).join(',')},${sumLimits},${entry[combineLimit]}`;
     if (sumLimits > maxCombined) {
       bad.push(entry);
       const bucket = badBuckets.get(id) ?? {sum: 0, entries: []};
@@ -127,11 +126,10 @@ function queryCombineLimit(records, combineLimit, computeLimit, limits) {
     }
   }
   console.log('total valid entries:', good.length + bad.length);
-  console.log('num entries where', limits.join('+'), '> COMBINED:', bad.length);
+  console.log('num entries where', limits.join('+\n                  '), '> COMBINED:', bad.length);
   console.log('\n')
   
-  const headingsSplit = [...allLimits, combineLimit].map(v => v.split('_').slice(1));
-  headingsSplit.push(['count']);
+  const headingsSplit = [...limits, 'prefix_total_of_limits', combineLimit, 'prefix_count_of_opengles.gpuinfo.org_entries'].map(v => v.split('_').slice(1));
   const maxPieces = headingsSplit.reduce((max, arr) => Math.max(max, arr.length), 0);
   const headings = [];
   for (let p = 0; p < maxPieces; ++p) {
@@ -143,7 +141,7 @@ function queryCombineLimit(records, combineLimit, computeLimit, limits) {
       ...headings,
       headingsSplit.map(pieces => ' '.padStart(pieces.reduce((max, s) => Math.max(max, (s ?? '').length), 0), '-')),
       ...[...buckets.entries()].map(([k, {sum}]) => {
-        const cols = [...k.split(','), sum];
+        const cols = [...k.split(',').map(v => `${v} `), sum];
         return cols;
       }).sort((a, b) => b[b.length - 1] - a[a.length - 1]),
     ];
@@ -154,7 +152,7 @@ function queryCombineLimit(records, combineLimit, computeLimit, limits) {
 
 let o;
   const showComboEntries = (buckets) => {
-    const labels = [...allLimits, combineLimit];
+    const labels = [...limits, combineLimit];
     for (const [k, {entries}] of buckets.entries()) {
       console.log(k);
       console.log(k.split(',').map((v, i) => `${labels[i]}=${v}`).join(','));
@@ -170,28 +168,28 @@ let o;
     }
   };
 
-  showCombos(`Combos where COMBINED < ${limits.join('+')}`, badBuckets);
+  showCombos(`Combos where COMBINED < ${limits.join(' +\n                        ')}`, badBuckets);
   showComboEntries(badBuckets);
-  showCombos(`Combos where COMBINED >= ${limits.join('+')}`, goodBuckets);
+  showCombos(`Combos where COMBINED >= ${limits.join(' +\n                         ')}`, goodBuckets);
   showComboEntries(goodBuckets);
 }
 
-//queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_SHADER_STORAGE_BLOCKS', 'GL_MAX_COMPUTE_SHADER_STORAGE_BLOCKS', [
-//  'GL_MAX_FRAGMENT_SHADER_STORAGE_BLOCKS',
-//  'GL_MAX_VERTEX_SHADER_STORAGE_BLOCKS',
-//]);
-//
-//queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_IMAGE_UNIFORMS', 'GL_MAX_COMPUTE_IMAGE_UNIFORMS', [
-//  'GL_MAX_FRAGMENT_IMAGE_UNIFORMS',
-//  'GL_MAX_VERTEX_IMAGE_UNIFORMS',
-//]);
-//
-//queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS', 'GL_MAX_COMPUTE_TEXTURE_IMAGE_UNITS', [
-//  'GL_MAX_TEXTURE_IMAGE_UNITS',
-//  'GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS',
-//]);
+queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_SHADER_STORAGE_BLOCKS', [
+  'GL_MAX_FRAGMENT_SHADER_STORAGE_BLOCKS',
+  'GL_MAX_VERTEX_SHADER_STORAGE_BLOCKS',
+]);
 
-queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_SHADER_OUTPUT_RESOURCES', 'GL_MAX_COMPUTE_SHADER_STORAGE_BLOCKS', [
+queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_IMAGE_UNIFORMS', [
+  'GL_MAX_FRAGMENT_IMAGE_UNIFORMS',
+  'GL_MAX_VERTEX_IMAGE_UNIFORMS',
+]);
+
+queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS', [
+  'GL_MAX_TEXTURE_IMAGE_UNITS',
+  'GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS',
+]);
+
+queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_SHADER_OUTPUT_RESOURCES', [
   'GL_MAX_VERTEX_SHADER_STORAGE_BLOCKS',
   'GL_MAX_VERTEX_IMAGE_UNIFORMS',
   'GL_MAX_FRAGMENT_SHADER_STORAGE_BLOCKS',
@@ -199,6 +197,11 @@ queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_SHADER_OUTPUT_RESOURCES', 'GL_MAX
   'GL_MAX_DRAW_BUFFERS',
 ]);
 
+
+queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_SHADER_OUTPUT_RESOURCES', [
+  'GL_MAX_COMPUTE_SHADER_STORAGE_BLOCKS',
+  'GL_MAX_COMPUTE_IMAGE_UNIFORMS',
+]);
 
 // queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_UNIFORM_BLOCKS', 'GL_MAX_COMPUTE_UNIFORM_BLOCKS', [
 //   'GL_MAX_FRAGMENT_UNIFORM_BLOCKS	',
