@@ -77,6 +77,46 @@ function queryLimit(records, limit) {
   console.log('\n')
 }
 
+function queryFeature(records, feature) {
+  const buckets = new Map();
+  for (const entry of records) {
+    const v = entry[feature] ? true : false;
+    const bucket = buckets.get(v) || {sum: 0, entries: []};
+    bucket.sum++;
+    bucket.entries.push(entry);
+    buckets.set(v, bucket);
+  }
+
+  console.log(feature);
+  const results = [...buckets.entries()];
+  const rows = [
+    ['',          '', '',    '', ' %of '],
+    ['has feature ', '', 'cnt', '', 'total'],
+    ['---------', '', '---', '', '-----'],
+    ...results.map(([k, {sum}]) => [
+       k,
+       ': ',
+       sum,
+       '  ',
+       `${(sum / records.length * 100).toFixed(1)}%`,
+    ]),
+  ];
+  console.log(padColumns(rows, '<<>>>>>>'));
+  console.log('\n');
+  console.log('devices that don not have', feature);
+  const {entries} = buckets.get(false) ?? {entries:[]};
+  const devicesByGPU = new Map();
+  for (const e of entries) {
+    const devices = devicesByGPU.get(e.GL_RENDERER) ?? new Set();
+    devices.add(e.Device);
+    devicesByGPU.set(e.GL_RENDERER, devices);
+  }
+  for (const [gpu, devices] of devicesByGPU.entries()) {
+    console.log('   ', gpu, ':', [...devices.values()].join(','));
+  }
+  console.log('\n')
+}
+
 console.log('total records:                                  ', data.length);
 console.log('num records that claim OpenGL ES 3.1 or better: ', gles31Plus.length);
 console.log('\n');
@@ -89,6 +129,10 @@ queryLimit(gles31Plus, 'GL_MAX_VERTEX_IMAGE_UNIFORMS');
 queryLimit(gles31Plus, 'GL_MAX_TEXTURE_SIZE');
 queryLimit(gles31Plus, 'GL_MAX_3D_TEXTURE_SIZE');
 queryLimit(gles31Plus, 'GL_MAX_TEXTURE_LOD_BIAS');
+queryFeature(gles31Plus, 'GL_EXT_bgra');
+queryFeature(gles31Plus, 'GL_EXT_texture_format_BGRA8888');
+queryFeature(gles31Plus, 'GL_EXT_color_buffer_half_float');
+queryFeature(gles31Plus, 'GL_EXT_color_buffer_float');
 
 function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
@@ -220,11 +264,11 @@ queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_SHADER_OUTPUT_RESOURCES', [
 //   'GL_MAX_VERTEX_UNIFORM_BLOCKS',
 // ]);
 
-//queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_SHADER_OUTPUT_RESOURCES', [
-//  'GL_MAX_COMBINED_SHADER_STORAGE_BLOCKS',
-//  'GL_MAX_COMBINED_IMAGE_UNIFORMS	',
-//  'GL_MAX_COLOR_ATTACHMENTS',
-//]);
+queryCombineLimit(gles31Plus, 'GL_MAX_COMBINED_SHADER_OUTPUT_RESOURCES', [
+  'GL_MAX_COMBINED_SHADER_STORAGE_BLOCKS',
+  'GL_MAX_COMBINED_IMAGE_UNIFORMS',
+  'GL_MAX_COLOR_ATTACHMENTS',
+]);
 
 /*
 Combos where COMBINED < total
