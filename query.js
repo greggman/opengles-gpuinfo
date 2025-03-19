@@ -77,6 +77,18 @@ function queryLimit(records, limit) {
   console.log('\n')
 }
 
+function printEntriesGroupedByDevice(entries) {
+  const devicesByGPU = new Map();
+  for (const e of entries) {
+    const devices = devicesByGPU.get(e.GL_RENDERER) ?? new Set();
+    devices.add(e.Device);
+    devicesByGPU.set(e.GL_RENDERER, devices);
+  }
+  for (const [gpu, devices] of devicesByGPU.entries()) {
+    console.log('   ', gpu, ':', [...devices.values()].join(','));
+  }
+}
+
 function queryFeature(records, feature) {
   const buckets = new Map();
   for (const entry of records) {
@@ -103,18 +115,12 @@ function queryFeature(records, feature) {
   ];
   console.log(padColumns(rows, '<<>>>>>>'));
   console.log('\n');
-  console.log('devices that don not have', feature);
+  console.log('devices that do not have', feature);
   const {entries} = buckets.get(false) ?? {entries:[]};
-  const devicesByGPU = new Map();
-  for (const e of entries) {
-    const devices = devicesByGPU.get(e.GL_RENDERER) ?? new Set();
-    devices.add(e.Device);
-    devicesByGPU.set(e.GL_RENDERER, devices);
-  }
-  for (const [gpu, devices] of devicesByGPU.entries()) {
-    console.log('   ', gpu, ':', [...devices.values()].join(','));
-  }
+  printEntriesGroupedByDevice(entries);
   console.log('\n')
+
+  return buckets;
 }
 
 console.log('total records:                                  ', data.length);
@@ -133,6 +139,60 @@ queryFeature(gles31Plus, 'GL_EXT_bgra');
 queryFeature(gles31Plus, 'GL_EXT_texture_format_BGRA8888');
 queryFeature(gles31Plus, 'GL_EXT_color_buffer_half_float');
 queryFeature(gles31Plus, 'GL_EXT_color_buffer_float');
+queryFeature(gles31Plus, 'GL_EXT_texture_border_clamp');
+
+// devices that don't have GL_EXT_color_buffer_float
+// but do have GL_MAX_FRAGMENT_IMAGE_UNIFORMS > 0
+// or GL_MAX_VERTEX_IMAGE_UNIFORMS > 0
+{
+  const e = gles31Plus.filter(device =>
+    !device['GL_EXT_color_buffer_float'] && (
+    device['GL_MAX_FRAGMENT_IMAGE_UNIFORMS'] > 0 ||
+    device['GL_MAX_VERTEX_IMAGE_UNIFORMS'] > 0 ||
+    device['GL_MAX_FRAGMENT_SHADER_STORAGE_BLOCKS'] > 0 ||
+    device['GL_MAX_VERTEX_SHADER_STORAGE_BLOCKS'] > 0))
+  console.log('devices that do NOT have GL_EXT_color_buffer_float but do have storage buffers OR storage textures in vertex/fragment shaders')
+  printEntriesGroupedByDevice(e);
+  console.log('\n');
+}
+
+{
+  const e = gles31Plus.filter(device =>
+    device['GL_EXT_color_buffer_float'] && (
+      device['GL_MAX_FRAGMENT_IMAGE_UNIFORMS'] === 0 ||
+      device['GL_MAX_VERTEX_IMAGE_UNIFORMS'] === 0 ||
+      device['GL_MAX_FRAGMENT_SHADER_STORAGE_BLOCKS'] === 0 ||
+      device['GL_MAX_VERTEX_SHADER_STORAGE_BLOCKS'] === 0))
+  console.log('devices that DO have GL_EXT_color_buffer_float but have 0 storage buffers OR 0 storage textures in vertex or fragment shaders')
+  printEntriesGroupedByDevice(e);
+  console.log('\n');
+}
+
+{
+  const e = gles31Plus.filter(device =>
+    device['GL_EXT_color_buffer_float'] && (
+      device['GL_MAX_FRAGMENT_IMAGE_UNIFORMS'] === 0 ||
+      device['GL_MAX_FRAGMENT_SHADER_STORAGE_BLOCKS'] === 0));
+  console.log('devices that DO have GL_EXT_color_buffer_float but have 0 storage buffers OR 0 storage textures in fragment shaders');
+  printEntriesGroupedByDevice(e);
+  console.log('\n');
+}
+
+{
+  const e = gles31Plus.filter(device =>
+    device['GL_EXT_color_buffer_float'] && (device['GL_MAX_FRAGMENT_SHADER_STORAGE_BLOCKS'] === 0));
+  console.log('devices that DO have GL_EXT_color_buffer_float but have 0 storage buffers in fragment shader');
+  printEntriesGroupedByDevice(e);
+  console.log('\n');
+}
+
+{
+  const e = gles31Plus.filter(device =>
+    device['GL_EXT_color_buffer_float'] && (device['GL_MAX_FRAGMENT_IMAGE_UNIFORMS'] === 0));
+  console.log('devices that DO have GL_EXT_color_buffer_float but have 0 storage textures in fragment shaders');
+  printEntriesGroupedByDevice(e);
+  console.log('\n');
+}
 
 function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
