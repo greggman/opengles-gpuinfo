@@ -43,12 +43,18 @@ function padColumns(rows, formats = '') {
   return rows.map(row => row.map((v, i) => pad(formats[i], columnLengths[i], v)).join('')).join('\n');
 }
 
-function queryLimit(records, limit) {
+function queryLimit(records, limit, requiredLimit = 0) {
   const validRecords = records.filter(r => r[limit] !== undefined)
+  const belowLimitByGPU = new Map();
   const buckets = new Map();
   for (const entry of validRecords) {
     const v = entry[limit];
     buckets.set(v, (buckets.get(v) || 0) + 1);
+    if (v < requiredLimit) {
+      const devices = belowLimitByGPU.get(entry.GL_RENDERER) ?? new Set();
+      devices.add(entry.Device);
+      belowLimitByGPU.set(entry.GL_RENDERER, devices);
+    }
   }
 
   console.log(limit);
@@ -75,6 +81,15 @@ function queryLimit(records, limit) {
   ];
   console.log(padColumns(rows, '<<>>>>>>'));
   console.log('\n')
+
+  if (requiredLimit > 0) {
+    console.log(`devices where ${limit} < ${requiredLimit}`)
+    for (const [gpu, devices] of belowLimitByGPU.entries()) {
+      console.log('   ', gpu, ':', [...devices.values()].join(','));
+    }
+    console.log('\n')
+    console.log('\n')
+  }
 }
 
 function printEntriesGroupedByDevice(entries) {
@@ -128,10 +143,10 @@ console.log('num records that claim OpenGL ES 3.1 or better: ', gles31Plus.lengt
 console.log('\n');
 
 queryLimit(gles31Plus, 'GL_MAX_COMPUTE_SHADER_STORAGE_BLOCKS');
-queryLimit(gles31Plus, 'GL_MAX_FRAGMENT_SHADER_STORAGE_BLOCKS');
-queryLimit(gles31Plus, 'GL_MAX_VERTEX_SHADER_STORAGE_BLOCKS');
-queryLimit(gles31Plus, 'GL_MAX_FRAGMENT_IMAGE_UNIFORMS');
-queryLimit(gles31Plus, 'GL_MAX_VERTEX_IMAGE_UNIFORMS');
+queryLimit(gles31Plus, 'GL_MAX_FRAGMENT_SHADER_STORAGE_BLOCKS', 4);
+queryLimit(gles31Plus, 'GL_MAX_VERTEX_SHADER_STORAGE_BLOCKS', 4);
+queryLimit(gles31Plus, 'GL_MAX_FRAGMENT_IMAGE_UNIFORMS', 4);
+queryLimit(gles31Plus, 'GL_MAX_VERTEX_IMAGE_UNIFORMS', 4);
 queryLimit(gles31Plus, 'GL_MAX_TEXTURE_SIZE');
 queryLimit(gles31Plus, 'GL_MAX_3D_TEXTURE_SIZE');
 queryLimit(gles31Plus, 'GL_MAX_TEXTURE_LOD_BIAS');
